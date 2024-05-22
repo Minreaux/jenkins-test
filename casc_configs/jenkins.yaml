@@ -61,7 +61,7 @@ globalCredentialsConfiguration:
     typeFilter: "none"
 appearance:
   pipelineGraphView:
-    showGraphOnBuildPage: false
+    showGraphOnBuildPage: true
     showGraphOnJobPage: false
   prism:
     theme: PRISM
