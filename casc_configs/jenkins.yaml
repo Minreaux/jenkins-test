@@ -85,6 +85,19 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  globalLibraries:
+    libraries:
+    - defaultVersion: "main"
+      name: "utils"
+      retriever:
+        modernSCM:
+          libraryPath: "shared_libraries/utils/"
+          scm:
+            git:
+              id: "6fc87cf5-d8df-492e-9773-786c0e84c7c7"
+              remote: "https://github.com/Minreaux/jenkins-test"
+              traits:
+              - "gitBranchDiscovery"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
   mailer:
