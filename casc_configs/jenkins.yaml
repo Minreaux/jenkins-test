@@ -9,6 +9,8 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
   markupFormatter: "plainText"
@@ -100,6 +102,7 @@ unclassified:
               - "gitBranchDiscovery"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false
