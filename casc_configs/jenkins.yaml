@@ -9,6 +9,8 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
   markupFormatter: "plainText"
@@ -31,8 +33,6 @@ jenkins:
       name: "all"
   projectNamingStrategy: "standard"
   quietPeriod: 5
-  remotingSecurity:
-    enabled: true
   scmCheckoutRetryCount: 0
   securityRealm:
     local:
@@ -42,6 +42,10 @@ jenkins:
       - id: "admin"
         name: "admin"
         properties:
+        - "theme"
+        - "mailer"
+        - preferredProvider:
+            providerId: "default"
         - "apiToken"
         - "consoleUrlProvider"
         - "experimentalFlags"
@@ -54,14 +58,28 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
 appearance:
+  pipelineGraphView:
+    showGraphOnBuildPage: true
+    showGraphOnJobPage: false
   prism:
     theme: PRISM
+  themeManager:
+    disableUserThemes: false
 security:
   apiToken:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
@@ -69,10 +87,36 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  globalLibraries:
+    libraries:
+    - defaultVersion: "main"
+      name: "utils"
+      retriever:
+        modernSCM:
+          libraryPath: "shared_libraries/utils/"
+          scm:
+            git:
+              id: "6fc87cf5-d8df-492e-9773-786c0e84c7c7"
+              remote: "https://github.com/Minreaux/jenkins-test"
+              traits:
+              - "gitBranchDiscovery"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8080/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
   pollSCM:
     pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
 tool:
   mavenGlobalConfig:
     globalSettingsProvider: "standard"

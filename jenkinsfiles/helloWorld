@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+library('utils')
 
 pipeline
 {
@@ -10,7 +11,7 @@ pipeline
         {
             steps
             {
-                echo('Hello World')
+                sayHello('World')
             }
         }
     }
