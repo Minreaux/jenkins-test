@@ -3,8 +3,63 @@ jenkins:
   - "JNLP4-connect"
   - "Ping"
   authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+    roleBased:
+      roles:
+        global:
+        - entries:
+          - group: "FullAdmin"
+          name: "FullAdmin"
+          pattern: ".*"
+          permissions:
+          - "Overall/Administer"
+        - entries:
+          - group: "JobAdmin"
+          name: "JobAdmin"
+          pattern: ".*"
+          permissions:
+          - "Job/Move"
+          - "Job/Build"
+          - "View/Create"
+          - "Job/Read"
+          - "Overall/SystemRead"
+          - "Job/Delete"
+          - "View/Configure"
+          - "Metrics/HealthCheck"
+          - "Metrics/ThreadDump"
+          - "SCM/Tag"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Agent/ExtendedRead"
+          - "Credentials/View"
+          - "Agent/Connect"
+          - "Run/Replay"
+          - "Agent/Disconnect"
+          - "Run/Delete"
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Run/Update"
+          - "View/Delete"
+          - "Job/Configure"
+          - "Metrics/View"
+          - "Job/Workspace"
+          - "View/Read"
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
+        - name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+          - "Job/Read"
+          - "View/Read"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -31,24 +86,24 @@ jenkins:
   primaryView:
     all:
       name: "all"
-  projectNamingStrategy: "standard"
+  projectNamingStrategy:
+    roleBased:
+      forceExistingJobs: false
   quietPeriod: 5
   scmCheckoutRetryCount: 0
   securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "admin"
-        properties:
-        - "theme"
-        - "mailer"
-        - preferredProvider:
-            providerId: "default"
-        - "apiToken"
-        - "consoleUrlProvider"
-        - "experimentalFlags"
+    mock:
+      data: |-
+        admin FullAdmin
+        bob JobAdmin
+        bill JobAdmin
+        tim JobManager
+        tom JobManager
+        jane User
+        john User
+      groupIdStrategy: "caseInsensitive"
+      randomDelay: false
+      userIdStrategy: "caseInsensitive"
   slaveAgentPort: -1
   updateCenter:
     sites:
