@@ -35,20 +35,18 @@ jenkins:
   quietPeriod: 5
   scmCheckoutRetryCount: 0
   securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "admin"
-        properties:
-        - "theme"
-        - "mailer"
-        - preferredProvider:
-            providerId: "default"
-        - "apiToken"
-        - "consoleUrlProvider"
-        - "experimentalFlags"
+    mock:
+      data: |-
+        admin FullAdmin
+        bob JobAdmin
+        bill JobAdmin
+        tim JobManager
+        tom JobManager
+        jane User
+        john User
+      groupIdStrategy: "caseInsensitive"
+      randomDelay: false
+      userIdStrategy: "caseInsensitive"
   slaveAgentPort: -1
   updateCenter:
     sites:
