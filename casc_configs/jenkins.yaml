@@ -3,8 +3,60 @@ jenkins:
   - "JNLP4-connect"
   - "Ping"
   authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+    roleBased:
+      roles:
+        global:
+        - entries:
+          - group: "FullAdmin"
+          name: "FullAdmin"
+          pattern: ".*"
+          permissions:
+          - "Overall/Administer"
+        - entries:
+          - group: "JobAdmin"
+          name: "JobAdmin"
+          pattern: ".*"
+          permissions:
+          - "Job/Move"
+          - "Job/Build"
+          - "View/Create"
+          - "Job/Read"
+          - "Job/Delete"
+          - "View/Configure"
+          - "Metrics/HealthCheck"
+          - "Metrics/ThreadDump"
+          - "SCM/Tag"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Credentials/View"
+          - "Agent/Connect"
+          - "Run/Replay"
+          - "Agent/Disconnect"
+          - "Run/Delete"
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Run/Update"
+          - "View/Delete"
+          - "Job/Configure"
+          - "Job/Workspace"
+          - "Metrics/View"
+          - "View/Read"
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Discover"
+          - "Job/Read"
+        - name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+          - "Job/Read"
+          - "View/Read"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -31,7 +83,9 @@ jenkins:
   primaryView:
     all:
       name: "all"
-  projectNamingStrategy: "standard"
+  projectNamingStrategy:
+    roleBased:
+      forceExistingJobs: false
   quietPeriod: 5
   scmCheckoutRetryCount: 0
   securityRealm:
