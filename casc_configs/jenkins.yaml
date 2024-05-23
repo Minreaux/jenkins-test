@@ -21,6 +21,7 @@ jenkins:
           - "Job/Build"
           - "View/Create"
           - "Job/Read"
+          - "Overall/SystemRead"
           - "Job/Delete"
           - "View/Configure"
           - "Metrics/HealthCheck"
@@ -28,6 +29,7 @@ jenkins:
           - "SCM/Tag"
           - "Job/Create"
           - "Job/Discover"
+          - "Agent/ExtendedRead"
           - "Credentials/View"
           - "Agent/Connect"
           - "Run/Replay"
@@ -38,8 +40,8 @@ jenkins:
           - "Run/Update"
           - "View/Delete"
           - "Job/Configure"
-          - "Job/Workspace"
           - "Metrics/View"
+          - "Job/Workspace"
           - "View/Read"
         - entries:
           - group: "JobManager"
@@ -51,6 +53,7 @@ jenkins:
           - "Job/Build"
           - "Job/Discover"
           - "Job/Read"
+          - "View/Read"
         - name: "User"
           pattern: ".*"
           permissions:
