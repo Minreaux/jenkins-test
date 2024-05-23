@@ -7,11 +7,27 @@ pipeline
 
     stages
     {
-        stage('Greeting')
+        stage('Greeting with Custom Step')
         {
             steps
             {
                 sayHello('World')
+            }
+        }
+
+        stage('Greeting with Script')
+        {
+            steps
+            {
+                checkout(
+                    scmGit(
+                        branches: [[name: "$BRANCH_NAME"]],
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'scripts/hello.py']]]],
+                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                    )
+                )
+
+                pwsh('py scripts/hello.py "World"')
             }
         }
     }
