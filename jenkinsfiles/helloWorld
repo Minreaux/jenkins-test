@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-library('utils')
+library("utils@$BRANCH_NAME")
 
 pipeline
 {
