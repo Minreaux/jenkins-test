@@ -2,11 +2,11 @@
 $currentWorkingDir = Get-Location
 $cascJenkinsConfig = "$currentWorkingDir\casc_configs"
 $jenkinsHome       = "$currentWorkingDir\jenkins"
-$jenkinsWar        = "$currentWorkingDir\jenkins\jenkins.war"
+$jenkinsWar        = "$jenkinsHome\jenkins.war"
 $jenkinsWarUrl     = "https://github.com/jenkinsci/jenkins/releases/download/jenkins-2.459/jenkins.war"
-$pluginDownloadDir = "$currentWorkingDir\jenkins\plugins"
-$pluginInstallFile = "$currentWorkingDir\casc_configs\plugins.yaml"
-$pluginManagerJar  = "$currentWorkingDir\jenkins\jenkins-plugin-manager-2.13.0.jar"
+$pluginDownloadDir = "$jenkinsHome\plugins"
+$pluginInstallFile = "$cascJenkinsConfig\plugins.yaml"
+$pluginManagerJar  = "$jenkinsHome\jenkins-plugin-manager-2.13.0.jar"
 $pluginManagerUrl  = "https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.13.0/jenkins-plugin-manager-2.13.0.jar"
 
 New-Item -ItemType Directory -Force -Path $jenkinsHome
