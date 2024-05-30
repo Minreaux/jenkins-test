@@ -10,6 +10,9 @@ plugins:
   - artifactId: git
     source:
       version: latest
+  - artifactId: job-dsl
+    source:
+      version: latest
   - artifactId: mock-security-realm
     source:
       version: latest
