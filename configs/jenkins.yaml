@@ -71,6 +71,7 @@ jenkins:
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
+  noUsageStatistics: true
   nodeMonitors:
   - "architecture"
   - "clock"
@@ -90,6 +91,8 @@ jenkins:
     roleBased:
       forceExistingJobs: false
   quietPeriod: 5
+  remotingSecurity:
+    enabled: true
   scmCheckoutRetryCount: 0
   securityRealm:
     mock:
@@ -176,6 +179,10 @@ unclassified:
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
 tool:
+  git:
+    installations:
+    - home: "git.exe"
+      name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

@@ -10,9 +10,9 @@ $pluginManagerUrl  = "https://github.com/jenkinsci/plugin-installation-manager-t
 $pluginsConfig     = "$jenkinsConfigs\plugins.yaml"
 $pluginsDir        = "$jenkinsHome\plugins"
 
-New-Item -ItemType Directory -Force -Path $jenkinsHome
-Invoke-WebRequest $jenkinsWarUrl -OutFile $jenkinsWar
-Invoke-WebRequest $pluginManagerUrl -OutFile $pluginManagerJar
+if (-NOT (Test-Path $jenkinsHome))      { New-Item -ItemType Directory -Force -Path $jenkinsHome }
+if (-NOT (Test-Path $jenkinsWar))       { Invoke-WebRequest $jenkinsWarUrl -OutFile $jenkinsWar }
+if (-NOT (Test-Path $pluginManagerJar)) { Invoke-WebRequest $pluginManagerUrl -OutFile $pluginManagerJar }
 
 java -jar $pluginManagerJar --war $jenkinsWar --plugin-download-directory $pluginsDir --plugin-file $pluginsConfig
 java -D"JENKINS_HOME=$jenkinsHome" -D"jenkins.install.runSetupWizard=false" -D"casc.jenkins.config=$jcascConfigs" -jar $jenkinsWar

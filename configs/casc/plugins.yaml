@@ -1,0 +1,7 @@
+# Manage Jenkins >> Plugins
+jenkins:
+
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"

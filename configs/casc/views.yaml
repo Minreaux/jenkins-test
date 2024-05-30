@@ -1,0 +1,14 @@
+# My Views
+jenkins:
+
+  myViewsTabBar: "standard"
+
+  primaryView:
+    all:
+      name: "all"
+
+  views:
+  - all:
+      name: "all"
+
+  viewsTabBar: "standard"
