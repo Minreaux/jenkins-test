@@ -1,47 +1,147 @@
-# Manage Jenkins >> System
 jenkins:
-
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+        - entries:
+          - group: "FullAdmin"
+          name: "FullAdmin"
+          pattern: ".*"
+          permissions:
+          - "Overall/Administer"
+        - entries:
+          - group: "JobAdmin"
+          name: "JobAdmin"
+          pattern: ".*"
+          permissions:
+          - "Job/Move"
+          - "Job/Build"
+          - "View/Create"
+          - "Job/Read"
+          - "Overall/SystemRead"
+          - "Job/Delete"
+          - "View/Configure"
+          - "Metrics/HealthCheck"
+          - "Metrics/ThreadDump"
+          - "SCM/Tag"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Agent/ExtendedRead"
+          - "Credentials/View"
+          - "Agent/Connect"
+          - "Run/Replay"
+          - "Agent/Disconnect"
+          - "Run/Delete"
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Run/Update"
+          - "View/Delete"
+          - "Job/Configure"
+          - "Metrics/View"
+          - "Job/Workspace"
+          - "View/Read"
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
+        - name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+          - "Job/Read"
+          - "View/Read"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
   disabledAdministrativeMonitors:
   - "hudson.util.DoubleLaunchChecker"
-
   labelAtoms:
   - name: "built-in"
-
+  markupFormatter: "plainText"
   mode: NORMAL
-
   myViewsTabBar: "standard"
-
+  nodeMonitors:
+  - "architecture"
+  - "clock"
+  - diskSpace:
+      freeSpaceThreshold: "1GiB"
+      freeSpaceWarningThreshold: "2GiB"
+  - "swapSpace"
+  - tmpSpace:
+      freeSpaceThreshold: "1GiB"
+      freeSpaceWarningThreshold: "2GiB"
+  - "responseTime"
   numExecutors: 2
-  
   primaryView:
     all:
       name: "all"
-
   projectNamingStrategy:
     roleBased:
       forceExistingJobs: false
-
   quietPeriod: 5
-
   scmCheckoutRetryCount: 0
-
+  securityRealm:
+    mock:
+      data: |-
+        admin FullAdmin
+        bob JobAdmin
+        bill JobAdmin
+        tim JobManager
+        tom JobManager
+        jane User
+        john User
+      groupIdStrategy: "caseInsensitive"
+      randomDelay: false
+      userIdStrategy: "caseInsensitive"
+  slaveAgentPort: -1
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
   views:
   - all:
       name: "all"
-
   viewsTabBar: "standard"
-
-
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+appearance:
+  pipelineGraphView:
+    showGraphOnBuildPage: true
+    showGraphOnJobPage: false
+  prism:
+    theme: PRISM
+  themeManager:
+    disableUserThemes: false
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
 unclassified:
-
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
-
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
-
   globalLibraries:
     libraries:
     - defaultVersion: "main"
@@ -58,19 +158,15 @@ unclassified:
                   extension:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
-
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
-
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-
   pollSCM:
     pollingThreadCount: 10
-
   scmGit:
     addGitTagAction: false
     allowSecondFetch: false
@@ -79,3 +175,7 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+tool:
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
