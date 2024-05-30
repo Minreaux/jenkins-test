@@ -1,0 +1,12 @@
+# Manage Jenkins >> Appearance
+appearance:
+
+  pipelineGraphView:
+    showGraphOnBuildPage: true
+    showGraphOnJobPage: false
+
+  prism:
+    theme: PRISM
+
+  themeManager:
+    disableUserThemes: false
