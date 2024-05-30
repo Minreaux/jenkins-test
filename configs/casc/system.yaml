@@ -11,6 +11,8 @@ jenkins:
 
   mode: NORMAL
 
+  noUsageStatistics: true
+  
   numExecutors: 2
 
   projectNamingStrategy:
