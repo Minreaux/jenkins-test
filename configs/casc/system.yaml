@@ -25,11 +25,6 @@ jenkins:
 
   scmCheckoutRetryCount: 0
 
-  updateCenter:
-    sites:
-    - id: "default"
-      url: "https://updates.jenkins.io/update-center.json"
-
   views:
   - all:
       name: "all"
