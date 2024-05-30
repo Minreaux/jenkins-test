@@ -1,21 +1,17 @@
 # Manage Jenkins >> System
+# Do not add "remotingSecurity" section as per https://www.jenkins.io/doc/book/security/controller-isolation/jep-235/#api-compatibility
 jenkins:
 
   disabledAdministrativeMonitors:
   - "hudson.util.DoubleLaunchChecker"
 
+  # Labels
   labelAtoms:
   - name: "built-in"
 
   mode: NORMAL
 
-  myViewsTabBar: "standard"
-
   numExecutors: 2
-  
-  primaryView:
-    all:
-      name: "all"
 
   projectNamingStrategy:
     roleBased:
@@ -24,12 +20,6 @@ jenkins:
   quietPeriod: 5
 
   scmCheckoutRetryCount: 0
-
-  views:
-  - all:
-      name: "all"
-
-  viewsTabBar: "standard"
 
 
 unclassified:
