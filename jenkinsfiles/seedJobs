@@ -20,8 +20,9 @@ pipeline
                 )
 
                 jobDsl(
-                    targets: 'jenkinsfiles/*.groovy',
                     removedJobAction: 'DELETE',
+                    sandbox: true,
+                    targets: 'jenkinsfiles/*.groovy'
                 )
             }
         }
