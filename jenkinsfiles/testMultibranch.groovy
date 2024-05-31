@@ -19,7 +19,9 @@ multibranchPipelineJob('testMultibranch')
                             {
                                 userRemoteConfig
                                 {
+                                    credentialsId('')
                                     name('jenkins-test')
+                                    refspec('')
                                     url('https://github.com/Minreaux/jenkins-test.git')
                                 }
                             }
