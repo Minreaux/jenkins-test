@@ -10,19 +10,22 @@ multibranchPipelineJob('helloWorld')
         }
     }
 
-    orphanedItemStrategy
-    {
-        defaultOrphanedItemStrategy
-        {
-            pruneDeadBranches(true)
-        }
-    }
-
     factory
     {
         workflowBranchProjectFactory
         {
             scriptPath('jenkinsfiles/helloWorld')
+        }
+    }
+
+    orphanedItemStrategy
+    {
+        defaultOrphanedItemStrategy
+        {
+            abortBuilds(true)
+            daysToKeepStr('')
+            numToKeepStr('')
+            pruneDeadBranches(true)
         }
     }
 }
