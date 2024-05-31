@@ -1,0 +1,4 @@
+# Jobs (AKA Projects)
+# If pulling from GitHub, must use raw file links
+jobs:
+  - url: https://raw.githubusercontent.com/Minreaux/jenkins-test/setup-job-dsl/jenkinsfiles/helloWorld.groovy
