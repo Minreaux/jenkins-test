@@ -1,5 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the testDelete Jenkins pipeline
-pipelineJob('seedJobs')
+pipelineJob('testDelete')
 {
     definition
     {
