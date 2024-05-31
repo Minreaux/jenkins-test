@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline that is used to seed Jenkins Job DSL configured jobs
+pipeline
+{
+    agent any
+
+    stages
+    {
+        stage('Seeding Jobs')
+        {
+            steps
+            {
+                echo('Seeding Jobs...')
+            }
+        }
+    }
+}

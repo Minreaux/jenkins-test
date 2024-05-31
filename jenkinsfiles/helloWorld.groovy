@@ -1,4 +1,4 @@
-// Job DSL Groovy script that defines the job configuration for a Jenkins pipeline
+// Job DSL Groovy script that defines the job configuration for the helloWorld Jenkins pipeline
 multibranchPipelineJob('helloWorld')
 {
     branchSources
