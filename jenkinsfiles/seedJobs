@@ -5,15 +5,15 @@ pipeline
 {
     agent any
 
-    environment
-    {
-        JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
-    }
-
     stages
     {
         stage('Seeding Jobs')
         {
+            environment
+            {
+                JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
+            }
+
             steps
             {
                 checkout(
