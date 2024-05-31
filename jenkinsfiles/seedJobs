@@ -26,6 +26,7 @@ pipeline
 
                 jobDsl(
                     removedJobAction: 'DELETE',
+                    sandbox: true,
                     targets: JOBS_CONFIG_PATH
                 )
             }
