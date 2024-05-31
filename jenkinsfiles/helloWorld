@@ -1,5 +1,6 @@
-// Jenkinsfile that defines a declarative Jenkins pipeline
 #!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline
 library("utils@$BRANCH_NAME")
 
 pipeline
