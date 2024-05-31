@@ -1,4 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the testMultibranch Jenkins pipeline
+String BRANCH_NAME = "${BRANCH_NAME}"
 multibranchPipelineJob('testMultibranch')
 {
     branchSources
