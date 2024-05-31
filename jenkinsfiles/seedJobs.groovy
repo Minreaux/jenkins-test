@@ -1,15 +1,68 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins pipeline
-pipelineJob('seedJobs')
+multibranchPipelineJob('seedJobs')
 {
-    definition
+    branchSources
     {
-        cpsScm
+        branchSource
         {
-            scm
+            source
             {
-                git('https://github.com/Minreaux/jenkins-test.git', 'setup-job-dsl')
-                scriptPath('jenkinsfiles/seedJobs')
+                fromScm
+                {
+                    name("$BRANCH_NAME")
+
+                    scm
+                    {
+                        gitSCM
+                        {
+                            branches
+                            {
+                                branchSpec
+                                {
+                                    name("$BRANCH_NAME")
+                                }
+                            }
+
+                            browser {}
+
+                            extensions
+                            {
+                                sparseCheckoutPaths
+                                {
+                                    sparseCheckoutPaths
+                                    {
+                                        sparseCheckoutPath
+                                        {
+                                            path('jenkinsfiles/seedJobs')
+                                        }
+                                    }
+                                }
+                            }
+
+                            gitTool('')
+
+                            userRemoteConfigs
+                            {
+                                userRemoteConfig
+                                {
+                                    credentialsId('')
+                                    name('jenkins-test')
+                                    refspec('')
+                                    url('https://github.com/Minreaux/jenkins-test.git')
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
+    }
+
+    factory
+    {
+        workflowBranchProjectFactory
+        {
+            scriptPath('jenkinsfiles/seedJobs')
         }
     }
 }

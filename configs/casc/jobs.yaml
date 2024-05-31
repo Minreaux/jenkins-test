@@ -1,4 +1,7 @@
 # Jobs (AKA Projects)
 # If pulling from GitHub, must use raw file links
 jobs:
+  - providedEnv:
+      # Provides initial BRANCH_NAME used for initial seedJobs pipeline setup
+      BRANCH_NAME: 'setup-job-dsl'
   - url: https://raw.githubusercontent.com/Minreaux/jenkins-test/setup-job-dsl/jenkinsfiles/seedJobs.groovy
