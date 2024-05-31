@@ -1,0 +1,62 @@
+// Job DSL Groovy script that defines the job configuration for the testMultibranch Jenkins pipeline
+multibranchPipelineJob('testMultibranch')
+{
+    branchSources
+    {
+        branchSource
+        {
+            source
+            {
+                fromScm
+                {
+                    name('setup-job-dsl')
+
+                    scm
+                    {
+                        gitSCM
+                        {
+                            userRemoteConfigs
+                            {
+                                userRemoteConfig
+                                {
+                                    name('jenkins-test')
+                                    url('https://github.com/Minreaux/jenkins-test.git')
+                                }
+                            }
+
+                            branches
+                            {
+                                branchSpec
+                                {
+                                    name('setup-job-dsl')
+                                }
+                            }
+
+                            extensions
+                            {
+                                sparseCheckoutPaths
+                                {
+                                    sparseCheckoutPaths
+                                    {
+                                        sparseCheckoutPath
+                                        {
+                                            path('jenkinsfiles/testMultibranch')
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    factory
+    {
+        workflowBranchProjectFactory
+        {
+            scriptPath('jenkinsfiles/testMultibranch')
+        }
+    }
+}

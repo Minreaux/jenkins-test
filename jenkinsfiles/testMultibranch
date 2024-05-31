@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline
+pipeline
+{
+    agent any
+
+    stages
+    {
+        stage('Test Multibranch')
+        {
+            steps
+            {
+                echo('Test Multibranch...')
+            }
+        }
+    }
+}
