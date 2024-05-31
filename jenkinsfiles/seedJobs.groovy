@@ -9,7 +9,7 @@ multibranchPipelineJob('seedJobs')
             {
                 fromScm
                 {
-                    name("$BRANCH_NAME")
+                    name("${BRANCH_NAME}")
 
                     scm
                     {
@@ -19,7 +19,7 @@ multibranchPipelineJob('seedJobs')
                             {
                                 branchSpec
                                 {
-                                    name("$BRANCH_NAME")
+                                    name("${BRANCH_NAME}")
                                 }
                             }
 
