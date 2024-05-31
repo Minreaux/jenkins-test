@@ -11,7 +11,15 @@ pipeline
         {
             steps
             {
-                echo('Seeding Jobs...')
+                checkout(
+                    scmGit(
+                        branches: [[name: 'setup-job-dsl']],
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'jenkinsfiles/*.groovy']]]],
+                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                    )
+                )
+
+                jobDsl(targets: 'jenkinsfiles/*.groovy')
             }
         }
     }
