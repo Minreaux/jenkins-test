@@ -9,7 +9,7 @@ multibranchPipelineJob('testMultibranch')
             {
                 fromScm
                 {
-                    name('setup-job-dsl')
+                    name("$BRANCH_NAME")
 
                     scm
                     {
@@ -19,7 +19,7 @@ multibranchPipelineJob('testMultibranch')
                             {
                                 branchSpec
                                 {
-                                    name('setup-job-dsl')
+                                    name("$BRANCH_NAME")
                                 }
                             }
 
