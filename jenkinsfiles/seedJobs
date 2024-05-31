@@ -5,6 +5,11 @@ pipeline
 {
     agent any
 
+    environment
+    {
+        JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
+    }
+
     stages
     {
         stage('Seeding Jobs')
@@ -13,8 +18,8 @@ pipeline
             {
                 checkout(
                     scmGit(
-                        branches: [[name: 'setup-job-dsl']],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'jenkinsfiles/*.groovy']]]],
+                        branches: [[name: BRANCH_NAME]],
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: JOBS_CONFIG_PATH]]]],
                         userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
                     )
                 )
@@ -22,7 +27,7 @@ pipeline
                 jobDsl(
                     removedJobAction: 'DELETE',
                     sandbox: true,
-                    targets: 'jenkinsfiles/*.groovy'
+                    targets: JOBS_CONFIG_PATH
                 )
             }
         }
