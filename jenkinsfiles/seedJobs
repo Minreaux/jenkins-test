@@ -11,7 +11,7 @@ pipeline
         {
             environment
             {
-                JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
+                JOBS_CONFIG_PATH = 'jenkinsfiles/testDsl.groovy'
             }
 
             steps
