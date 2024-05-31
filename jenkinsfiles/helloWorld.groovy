@@ -10,6 +10,14 @@ multibranchPipelineJob('helloWorld')
         }
     }
 
+    orphanedItemStrategy
+    {
+        defaultOrphanedItemStrategy
+        {
+            pruneDeadBranches(true)
+        }
+    }
+
     factory
     {
         workflowBranchProjectFactory
