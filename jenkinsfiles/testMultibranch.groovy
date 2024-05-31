@@ -15,17 +15,6 @@ multibranchPipelineJob('testMultibranch')
                     {
                         gitSCM
                         {
-                            userRemoteConfigs
-                            {
-                                userRemoteConfig
-                                {
-                                    credentialsId('')
-                                    name('jenkins-test')
-                                    refspec('')
-                                    url('https://github.com/Minreaux/jenkins-test.git')
-                                }
-                            }
-
                             branches
                             {
                                 branchSpec
@@ -33,6 +22,8 @@ multibranchPipelineJob('testMultibranch')
                                     name('setup-job-dsl')
                                 }
                             }
+
+                            browser {}
 
                             extensions
                             {
@@ -45,6 +36,19 @@ multibranchPipelineJob('testMultibranch')
                                             path('jenkinsfiles/testMultibranch')
                                         }
                                     }
+                                }
+                            }
+
+                            gitTool('')
+
+                            userRemoteConfigs
+                            {
+                                userRemoteConfig
+                                {
+                                    credentialsId('')
+                                    name('jenkins-test')
+                                    refspec('')
+                                    url('https://github.com/Minreaux/jenkins-test.git')
                                 }
                             }
                         }
