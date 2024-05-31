@@ -19,7 +19,10 @@ pipeline
                     )
                 )
 
-                jobDsl(targets: 'jenkinsfiles/*.groovy')
+                jobDsl(
+                    targets: 'jenkinsfiles/*.groovy',
+                    removedJobAction: 'DELETE',
+                )
             }
         }
     }
