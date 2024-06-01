@@ -1,4 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins pipeline
+String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
 multibranchPipelineJob('seedJobs')
 {
     branchSources
@@ -9,7 +10,7 @@ multibranchPipelineJob('seedJobs')
             {
                 fromScm
                 {
-                    name("${BRANCH_NAME}")
+                    name(BRANCH_NAME)
 
                     scm
                     {
@@ -19,7 +20,7 @@ multibranchPipelineJob('seedJobs')
                             {
                                 branchSpec
                                 {
-                                    name("${BRANCH_NAME}")
+                                    name(BRANCH_NAME)
                                 }
                             }
 
