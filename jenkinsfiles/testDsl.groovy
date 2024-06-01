@@ -7,7 +7,7 @@ pipelineJob('testDsl')
         {
             scm
             {
-                git('https://github.com/Minreaux/jenkins-test.git', "${BRANCH_NAME}")
+                git('https://github.com/Minreaux/jenkins-test.git', BRANCH_NAME)
                 scriptPath('jenkinsfiles/testDsl')
             }
         }
