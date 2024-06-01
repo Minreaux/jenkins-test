@@ -108,3 +108,8 @@ security:
 
   globalJobDslSecurityConfiguration:
     useScriptSecurity: true
+
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: "triggeringUsersAuthorizationStrategy"

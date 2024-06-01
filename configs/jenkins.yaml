@@ -140,6 +140,10 @@ security:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
   globalJobDslSecurityConfiguration:
     useScriptSecurity: true
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: "triggeringUsersAuthorizationStrategy"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
