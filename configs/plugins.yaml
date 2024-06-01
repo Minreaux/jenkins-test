@@ -10,6 +10,9 @@ plugins:
   - artifactId: dark-theme
     source:
       version: latest
+  - artifactId: extended-read-permission
+    source:
+      version: latest
   - artifactId: git
     source:
       version: latest
