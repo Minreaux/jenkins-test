@@ -54,6 +54,15 @@ jenkins:
           - "Job/Discover"
           - "Job/Read"
           - "View/Read"
+        - entries:
+          - group: "ServiceUser"
+          name: "ServiceUser"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Read"
         - name: "User"
           pattern: ".*"
           permissions:
@@ -102,6 +111,7 @@ jenkins:
         bill JobAdmin
         tim JobManager
         tom JobManager
+        auto ServiceUser
         jane User
         john User
       groupIdStrategy: "caseInsensitive"

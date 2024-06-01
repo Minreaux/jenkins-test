@@ -9,12 +9,13 @@ Once setup has finished, you can access the local Jenkins instance through your 
 
 Mock accounts will be configured automatically and can be used to login. For these accounts, the password is the same as the username:
 
-| User     | Role       |
-| -------- | ---------- |
-| admin    | FullAdmin  |
-| bob      | JobAdmin   |
-| bill     | JobAdmin   |
-| tim      | JobManager |
-| tom      | JobManager |
-| jane     | User       |
-| john     | User       |
+| User     | Role        |
+| -------- | ----------- |
+| admin    | FullAdmin   |
+| bob      | JobAdmin    |
+| bill     | JobAdmin    |
+| tim      | JobManager  |
+| tom      | JobManager  |
+| auto     | ServiceUser |
+| jane     | User        |
+| john     | User        |
