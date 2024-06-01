@@ -68,4 +68,18 @@ multibranchPipelineJob('seedJobs')
             scriptPath('jenkinsfiles/seedJobs')
         }
     }
+
+    properties
+    {
+        authorizeProjectProperty
+        {
+            strategy
+            {
+                specificUsersAuthorizationStrategy
+                {
+                    userid: 'admin'
+                }
+            }   
+        }   
+    }
 }
