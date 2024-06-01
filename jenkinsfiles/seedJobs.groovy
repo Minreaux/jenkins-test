@@ -1,4 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins pipeline
+// Initial BRANCH_NAME value is passed in through the Jenkins Configuration as Code YAML file
 String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
 multibranchPipelineJob('seedJobs')
 {
