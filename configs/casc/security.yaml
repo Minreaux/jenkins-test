@@ -6,66 +6,76 @@ jenkins:
   - "Ping"
 
   authorizationStrategy:
-      roleBased:
-        roles:
-          global:
-          - entries:
-            - group: "FullAdmin"
-            name: "FullAdmin"
-            pattern: ".*"
-            permissions:
-            - "Overall/Administer"
+    roleBased:
+      roles:
+        global:
+        - entries:
+          - group: "FullAdmin"
+          name: "FullAdmin"
+          pattern: ".*"
+          permissions:
+          - "Overall/Administer"
 
-          - entries:
-            - group: "JobAdmin"
-            name: "JobAdmin"
-            pattern: ".*"
-            permissions:
-            - "Job/Move"
-            - "Job/Build"
-            - "View/Create"
-            - "Job/Read"
-            - "Overall/SystemRead"
-            - "Job/Delete"
-            - "View/Configure"
-            - "Metrics/HealthCheck"
-            - "Metrics/ThreadDump"
-            - "SCM/Tag"
-            - "Job/Create"
-            - "Job/Discover"
-            - "Agent/ExtendedRead"
-            - "Credentials/View"
-            - "Agent/Connect"
-            - "Run/Replay"
-            - "Agent/Disconnect"
-            - "Run/Delete"
-            - "Job/Cancel"
-            - "Overall/Read"
-            - "Run/Update"
-            - "View/Delete"
-            - "Job/Configure"
-            - "Metrics/View"
-            - "Job/Workspace"
-            - "View/Read"
+        - entries:
+          - group: "JobAdmin"
+          name: "JobAdmin"
+          pattern: ".*"
+          permissions:
+          - "Job/Move"
+          - "Job/Build"
+          - "View/Create"
+          - "Job/Read"
+          - "Overall/SystemRead"
+          - "Job/Delete"
+          - "View/Configure"
+          - "Metrics/HealthCheck"
+          - "Metrics/ThreadDump"
+          - "SCM/Tag"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Agent/ExtendedRead"
+          - "Credentials/View"
+          - "Agent/Connect"
+          - "Run/Replay"
+          - "Agent/Disconnect"
+          - "Run/Delete"
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Run/Update"
+          - "View/Delete"
+          - "Job/Configure"
+          - "Metrics/View"
+          - "Job/Workspace"
+          - "View/Read"
 
-          - entries:
-            - group: "JobManager"
-            name: "JobManager"
-            pattern: ".*"
-            permissions:
-            - "Job/Cancel"
-            - "Overall/Read"
-            - "Job/Build"
-            - "Job/Discover"
-            - "Job/Read"
-            - "View/Read"
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
 
-          - name: "User"
-            pattern: ".*"
-            permissions:
-            - "Overall/Read"
-            - "Job/Read"
-            - "View/Read"
+        - entries:
+          - group: "ServiceUser"
+          name: "ServiceUser"
+          pattern: ".*"
+          permissions:
+          - "Job/Cancel"
+          - "Overall/Read"
+          - "Job/Build"
+          - "Job/Read"
+
+        - name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+          - "Job/Read"
+          - "View/Read"
 
   crumbIssuer:
     standard:
@@ -74,7 +84,7 @@ jenkins:
   disableRememberMe: false
 
   markupFormatter: "plainText"
-  
+
   securityRealm:
     mock:
       data: |-
@@ -83,6 +93,7 @@ jenkins:
         bill JobAdmin
         tim JobManager
         tom JobManager
+        auto ServiceUser
         jane User
         john User
       groupIdStrategy: "caseInsensitive"
