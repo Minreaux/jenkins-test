@@ -114,4 +114,6 @@ security:
   queueItemAuthenticator:
     authenticators:
     - global:
-        strategy: "triggeringUsersAuthorizationStrategy"
+        strategy:
+          specificUsersAuthorizationStrategy:
+            userid: "auto"
