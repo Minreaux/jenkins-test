@@ -61,12 +61,12 @@ jenkins:
           - "Job/Discover"
           - "Job/Read"
 
-        - name: "User"
+        - entries:
+          - group: "authenticated"
+          name: "User"
           pattern: ".*"
           permissions:
-          - "Job/Read"
           - "Overall/Read"
-          - "View/Read"
 
   crumbIssuer:
     standard:

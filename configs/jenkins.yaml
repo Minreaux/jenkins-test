@@ -54,12 +54,12 @@ jenkins:
           - "Job/Discover"
           - "Job/Read"
           - "Agent/Build"
-        - name: "User"
+        - entries:
+          - group: "authenticated"
+          name: "User"
           pattern: ".*"
           permissions:
           - "Overall/Read"
-          - "Job/Read"
-          - "View/Read"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
