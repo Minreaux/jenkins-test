@@ -1,6 +1,6 @@
 # Jenkins Test
 
-This is used for testing Jenkins Configuration as Code (JCasC) and Jenkins Pipeline as Code functionality.
+This is used for testing Jenkins Configuration as Code (JCasC), Jenkins Pipeline as Code, Jenkins Plugin Installation Manager Tool, and Jenkins Job DSL functionality.
 
 ## Getting Started
 Download the repository and run the `Install-Jenkins.ps1` script. This will automatically setup a Jenkins instance locally using configuration as code.
