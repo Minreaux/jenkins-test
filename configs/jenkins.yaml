@@ -36,17 +36,6 @@ jenkins:
           - "View/Read"
           - "Metrics/HealthCheck"
         - entries:
-          - group: "JobManager"
-          name: "JobManager"
-          pattern: ".*"
-          permissions:
-          - "Job/Cancel"
-          - "Overall/Read"
-          - "Job/Build"
-          - "Job/Discover"
-          - "Job/Read"
-          - "View/Read"
-        - entries:
           - group: "ServiceUser"
           name: "ServiceUser"
           pattern: ".*"
@@ -63,6 +52,17 @@ jenkins:
           pattern: ".*"
           permissions:
           - "Overall/Read"
+        items:
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: "(?!^seedJobs$)(^.*$)"
+          permissions:
+          - "Job/Cancel"
+          - "Job/Build"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false

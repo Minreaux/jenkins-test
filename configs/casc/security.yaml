@@ -41,18 +41,6 @@ jenkins:
           - "View/Read"
 
         - entries:
-          - group: "JobManager"
-          name: "JobManager"
-          pattern: ".*"
-          permissions:
-          - "Job/Build"
-          - "Job/Cancel"
-          - "Job/Discover"
-          - "Job/Read"
-          - "Overall/Read"
-          - "View/Read"
-
-        - entries:
           - group: "ServiceUser"
           name: "ServiceUser"
           pattern: ".*"
@@ -70,6 +58,18 @@ jenkins:
           pattern: ".*"
           permissions:
           - "Overall/Read"
+
+        items:
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: "(?!^seedJobs$)(^.*$)" # Any job except "seedJobs" is visible
+          permissions:
+          - "Job/Build"
+          - "Job/Cancel"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
 
   crumbIssuer:
     standard:
