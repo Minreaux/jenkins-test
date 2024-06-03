@@ -5,6 +5,11 @@ pipeline
 {
     agent any
 
+    options
+    {
+        timeout(5, unit: 'MINUTES')
+    }
+
     stages
     {
         stage('Seeding Jobs')
