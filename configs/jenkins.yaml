@@ -17,47 +17,50 @@ jenkins:
           name: "JobAdmin"
           pattern: ".*"
           permissions:
-          - "Job/Move"
-          - "Job/Build"
-          - "View/Create"
-          - "Job/Read"
-          - "Overall/SystemRead"
-          - "Job/Delete"
-          - "View/Configure"
-          - "Metrics/HealthCheck"
           - "Metrics/ThreadDump"
-          - "SCM/Tag"
-          - "Job/Create"
+          - "Job/Build"
           - "Job/Discover"
+          - "Job/Read"
           - "Agent/ExtendedRead"
           - "Credentials/View"
           - "Agent/Connect"
           - "Run/Replay"
           - "Agent/Disconnect"
-          - "Run/Delete"
           - "Job/Cancel"
+          - "Job/ExtendedRead"
           - "Overall/Read"
-          - "Run/Update"
-          - "View/Delete"
+          - "Overall/SystemRead"
           - "Job/Configure"
-          - "Metrics/View"
           - "Job/Workspace"
+          - "Metrics/View"
           - "View/Read"
+          - "Metrics/HealthCheck"
+        - entries:
+          - group: "ServiceUser"
+          name: "ServiceUser"
+          pattern: ".*"
+          permissions:
+          - "Job/ExtendedRead"
+          - "Job/Delete"
+          - "Job/Create"
+          - "Job/Discover"
+          - "Job/Read"
+          - "Agent/Build"
+        - entries:
+          - group: "authenticated"
+          name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+        items:
         - entries:
           - group: "JobManager"
           name: "JobManager"
-          pattern: ".*"
+          pattern: "(?!^seedJobs$)(^.*$)"
           permissions:
           - "Job/Cancel"
-          - "Overall/Read"
           - "Job/Build"
           - "Job/Discover"
-          - "Job/Read"
-          - "View/Read"
-        - name: "User"
-          pattern: ".*"
-          permissions:
-          - "Overall/Read"
           - "Job/Read"
           - "View/Read"
   crumbIssuer:
@@ -102,6 +105,7 @@ jenkins:
         bill JobAdmin
         tim JobManager
         tom JobManager
+        auto ServiceUser
         jane User
         john User
       groupIdStrategy: "caseInsensitive"
@@ -138,6 +142,14 @@ security:
     allowedOnController: false
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy:
+          specificUsersAuthorizationStrategy:
+            userid: "auto"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:

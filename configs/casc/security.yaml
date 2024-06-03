@@ -6,66 +6,70 @@ jenkins:
   - "Ping"
 
   authorizationStrategy:
-      roleBased:
-        roles:
-          global:
-          - entries:
-            - group: "FullAdmin"
-            name: "FullAdmin"
-            pattern: ".*"
-            permissions:
-            - "Overall/Administer"
+    roleBased:
+      roles:
+        global:
+        - entries:
+          - group: "FullAdmin"
+          name: "FullAdmin"
+          pattern: ".*"
+          permissions:
+          - "Overall/Administer"
 
-          - entries:
-            - group: "JobAdmin"
-            name: "JobAdmin"
-            pattern: ".*"
-            permissions:
-            - "Job/Move"
-            - "Job/Build"
-            - "View/Create"
-            - "Job/Read"
-            - "Overall/SystemRead"
-            - "Job/Delete"
-            - "View/Configure"
-            - "Metrics/HealthCheck"
-            - "Metrics/ThreadDump"
-            - "SCM/Tag"
-            - "Job/Create"
-            - "Job/Discover"
-            - "Agent/ExtendedRead"
-            - "Credentials/View"
-            - "Agent/Connect"
-            - "Run/Replay"
-            - "Agent/Disconnect"
-            - "Run/Delete"
-            - "Job/Cancel"
-            - "Overall/Read"
-            - "Run/Update"
-            - "View/Delete"
-            - "Job/Configure"
-            - "Metrics/View"
-            - "Job/Workspace"
-            - "View/Read"
+        - entries:
+          - group: "JobAdmin"
+          name: "JobAdmin"
+          pattern: ".*"
+          permissions:
+          - "Agent/Connect"
+          - "Agent/Disconnect"
+          - "Agent/ExtendedRead"
+          - "Credentials/View"
+          - "Job/Build"
+          - "Job/Cancel"
+          - "Job/Configure"
+          - "Job/Discover"
+          - "Job/ExtendedRead"
+          - "Job/Read"
+          - "Job/Workspace"
+          - "Metrics/HealthCheck"
+          - "Metrics/ThreadDump"
+          - "Metrics/View"
+          - "Overall/Read"
+          - "Overall/SystemRead"
+          - "Run/Replay"
+          - "View/Read"
 
-          - entries:
-            - group: "JobManager"
-            name: "JobManager"
-            pattern: ".*"
-            permissions:
-            - "Job/Cancel"
-            - "Overall/Read"
-            - "Job/Build"
-            - "Job/Discover"
-            - "Job/Read"
-            - "View/Read"
+        - entries:
+          - group: "ServiceUser"
+          name: "ServiceUser"
+          pattern: ".*"
+          permissions:
+          - "Agent/Build"
+          - "Job/Create"
+          - "Job/Delete"
+          - "Job/Discover"
+          - "Job/ExtendedRead"
+          - "Job/Read"
 
-          - name: "User"
-            pattern: ".*"
-            permissions:
-            - "Overall/Read"
-            - "Job/Read"
-            - "View/Read"
+        - entries:
+          - group: "authenticated"
+          name: "User"
+          pattern: ".*"
+          permissions:
+          - "Overall/Read"
+
+        items:
+        - entries:
+          - group: "JobManager"
+          name: "JobManager"
+          pattern: "(?!^seedJobs$)(^.*$)" # Any job except "seedJobs" is visible
+          permissions:
+          - "Job/Build"
+          - "Job/Cancel"
+          - "Job/Discover"
+          - "Job/Read"
+          - "View/Read"
 
   crumbIssuer:
     standard:
@@ -74,7 +78,7 @@ jenkins:
   disableRememberMe: false
 
   markupFormatter: "plainText"
-  
+
   securityRealm:
     mock:
       data: |-
@@ -83,6 +87,7 @@ jenkins:
         bill JobAdmin
         tim JobManager
         tom JobManager
+        auto ServiceUser
         jane User
         john User
       groupIdStrategy: "caseInsensitive"
@@ -105,3 +110,13 @@ security:
 
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy:
+          specificUsersAuthorizationStrategy:
+            userid: "auto"

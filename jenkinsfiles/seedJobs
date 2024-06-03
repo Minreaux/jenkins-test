@@ -1,0 +1,40 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline that is used to seed Jenkins Job DSL configured jobs
+pipeline
+{
+    agent any
+
+    options
+    {
+        timeout(time: 5, unit: 'MINUTES')
+    }
+
+    stages
+    {
+        stage('Seeding Jobs')
+        {
+            environment
+            {
+                JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
+            }
+
+            steps
+            {
+                checkout(
+                    scmGit(
+                        branches: [[name: BRANCH_NAME]],
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: JOBS_CONFIG_PATH]]]],
+                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                    )
+                )
+
+                jobDsl(
+                    removedJobAction: 'DELETE',
+                    sandbox: true,
+                    targets: JOBS_CONFIG_PATH
+                )
+            }
+        }
+    }
+}
