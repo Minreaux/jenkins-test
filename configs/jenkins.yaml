@@ -51,10 +51,9 @@ jenkins:
           name: "ServiceUser"
           pattern: ".*"
           permissions:
-          - "Job/Cancel"
-          - "Overall/Read"
-          - "Job/Build"
+          - "Job/Discover"
           - "Job/Read"
+          - "Agent/Build"
         - name: "User"
           pattern: ".*"
           permissions:
@@ -145,7 +144,9 @@ security:
   queueItemAuthenticator:
     authenticators:
     - global:
-        strategy: "triggeringUsersAuthorizationStrategy"
+        strategy:
+          specificUsersAuthorizationStrategy:
+            userid: "auto"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:

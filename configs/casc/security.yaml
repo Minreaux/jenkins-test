@@ -57,10 +57,9 @@ jenkins:
           name: "ServiceUser"
           pattern: ".*"
           permissions:
-          - "Job/Build"
-          - "Job/Cancel"
+          - "Agent/Build"
+          - "Job/Discover"
           - "Job/Read"
-          - "Overall/Read"
 
         - name: "User"
           pattern: ".*"
