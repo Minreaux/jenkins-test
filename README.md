@@ -1,5 +1,4 @@
 # Jenkins Test
-
 This is used for testing Jenkins Configuration as Code (JCasC), Jenkins Pipeline as Code, Jenkins Plugin Installation Manager Tool, and Jenkins Job DSL functionality.
 
 ## Getting Started
