@@ -3,5 +3,15 @@
 jobs:
   - providedEnv:
       # Provides initial BRANCH_NAME used for initial seedJobs pipeline setup
-      BRANCH_NAME: 'main'
-  - url: https://raw.githubusercontent.com/Minreaux/jenkins-test/main/jenkinsfiles/seedJobs.groovy
+      BRANCH_NAME: 'setup-hashicorp-vault'
+  - url: https://raw.githubusercontent.com/Minreaux/jenkins-test/setup-hashicorp-vault/jenkinsfiles/seedJobs.groovy
+  
+  # Disables the seedJobs pipeline initially because it does not work on first time boot; requires automation user setup first
+  - script: >
+      multibranchPipelineJob('seedJobs')
+      {
+          configure
+          {
+              it / disabled << 'true'
+          }
+      }
