@@ -46,6 +46,7 @@ jenkins:
           - "Job/Discover"
           - "Job/Read"
           - "Agent/Build"
+          - "Job/Configure"
         - entries:
           - group: "authenticated"
           name: "User"
