@@ -1,7 +1,7 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins multibranch pipeline
 // Initial BRANCH_NAME value is passed in through the Jenkins Configuration as Code YAML file
 // Because this is configured as a Multibranch pipeline, BRANCH_NAME can be used in any other Job DSL jobs
-String BRANCH_NAME = "setup-hashicorp-vault" // Prevents getProperty script approval requirement
+String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
 multibranchPipelineJob('seedJobs')
 {
     branchSources
@@ -68,6 +68,4 @@ multibranchPipelineJob('seedJobs')
             scriptPath('jenkinsfiles/seedJobs')
         }
     }
-
-    disabled()
 }
