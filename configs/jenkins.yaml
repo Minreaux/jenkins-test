@@ -1,3 +1,20 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - vaultAppRoleCredential:
+          id: "vault-jenkins-role"
+          path: "approle"
+          roleId: "${CASC_VAULT_APPROLE}"
+          scope: GLOBAL
+          secretId: "${CASC_VAULT_APPROLE_SECRET}"
+          usePolicies: false
+      - vaultStringCredentialImpl:
+          engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+          id: "vault-secret-text"
+          path: "secrets/creds/secret-text"
+          scope: GLOBAL
+          vaultKey: "secret"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -174,6 +191,14 @@ unclassified:
                   extension:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
+  hashicorpVault:
+    configuration:
+      disableChildPoliciesOverride: false
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+      skipSslVerification: true
+      timeout: 60
+      vaultCredentialId: "${CASC_VAULT_URL}"
+      vaultUrl: "${CASC_VAULT_URL}"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
