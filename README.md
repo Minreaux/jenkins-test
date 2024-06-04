@@ -19,7 +19,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 | jane     | User        |
 | john     | User        |
 
-> **_NOTE:_**  Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonmyous" which does not have any permissions. The "auto" user is created after first time login.
+> **_NOTE:_** Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonmyous" which does not have any permissions. The "auto" user is created after first time login.
 
 ## With Hashicorp Vault
 If you want to run this Jenkins instance with the configured Hashicorp Vault credentials, set the following environment variables before running the `Install-Jenkins.ps1` script:
@@ -28,3 +28,5 @@ If you want to run this Jenkins instance with the configured Hashicorp Vault cre
 - `CASC_VAULT_APPROLE`: Vault AppRole ID
 - `CASC_VAULT_APPROLE_SECRET`: Vault AppRole Secret ID
 - `CASC_VAULT_ENGINE_VERSION`: Vault kv secret engine version "1" or "2"
+
+> **_NOTE:_** Because this Jenkins setup is configured to use Hashicorp Vault for credentials, all non-Vault Jenkins credentials types have been disabled.
