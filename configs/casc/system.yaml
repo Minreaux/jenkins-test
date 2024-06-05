@@ -51,6 +51,15 @@ unclassified:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
 
+  hashicorpVault:
+    configuration:
+      disableChildPoliciesOverride: false
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+      skipSslVerification: true
+      timeout: 60
+      vaultCredentialId: "vault-jenkins-role"
+      vaultUrl: "${CASC_VAULT_URL}"
+
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"

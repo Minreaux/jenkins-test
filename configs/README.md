@@ -1,5 +1,4 @@
 # Jenkins Configuration Code
-
 This directory contains config files that are used to configure Jenkins entirely through code.
 
 The `casc/` folder holds Jenkins Configuration as Code files (JCasC) split based on the Jenkins UI categories. These are the files that Jenkins is setup to use for configuration.

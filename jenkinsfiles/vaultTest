@@ -1,0 +1,43 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline used to test Hashicorp Vault plugin
+pipeline
+{
+    agent any
+
+    options
+    {
+        // Keep only 1 build artifact
+        buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
+    }
+
+    stages
+    {
+        stage('Getting Secret from Vault')
+        {
+            environment
+            {
+                SCRIPT_PATH = 'scripts/writefile.py'
+                FILE_NAME   = 'secret.txt'
+            }
+
+            steps
+            {
+                checkout(
+                    scmGit(
+                        branches: [[name: BRANCH_NAME]],
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: SCRIPT_PATH]]]],
+                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                    )
+                )
+
+                withCredentials([vaultString(credentialsId: 'vault-secret-text', variable: 'MYSECRET')])
+                {
+                    pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                }
+
+                archiveArtifacts(artifacts: FILE_NAME)
+            }
+        }
+    }
+}

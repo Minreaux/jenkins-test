@@ -1,5 +1,5 @@
-// Job DSL Groovy script that defines the job configuration for the helloWorld Jenkins multibranch pipeline
-multibranchPipelineJob('helloWorld')
+// Job DSL Groovy script that defines the job configuration for the vaultTest Jenkins multibranch pipeline
+multibranchPipelineJob('vaultTest')
 {
     branchSources
     {
@@ -14,7 +14,7 @@ multibranchPipelineJob('helloWorld')
     {
         workflowBranchProjectFactory
         {
-            scriptPath('jenkinsfiles/helloWorld')
+            scriptPath('jenkinsfiles/vaultTest')
         }
     }
 
