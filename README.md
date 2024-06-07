@@ -30,3 +30,6 @@ If you want to run this Jenkins instance with the configured Hashicorp Vault cre
 - `CASC_VAULT_ENGINE_VERSION`: Vault kv secret engine version "1" or "2"
 
 > **_NOTE:_** Because this Jenkins setup is configured to use Hashicorp Vault for credentials, all non-Vault Jenkins credentials types have been disabled.
+
+## Cleanup
+To restart and test a new Jenkins installation, delete the `jenkins/` directory; when that directory is deleted, the `Install_Jenkins.ps1` script will re-install Jenkins from scratch.
