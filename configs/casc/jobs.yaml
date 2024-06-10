@@ -1,18 +1,9 @@
 # Jobs (AKA Projects)
 # If pulling from GitHub, must use raw file links
+# script code is Groovy, not YAML
 jobs:
   - providedEnv:
-      # Provides initial BRANCH_NAME used for initial seedJobs pipeline setup
+      REPO_URL: 'https://github.com/Minreaux/jenkins-test.git'
       BRANCH_NAME: 'main'
-  - url: https://raw.githubusercontent.com/Minreaux/jenkins-test/main/jenkinsfiles/seedJobs.groovy
-  
-  # Disables the seedJobs pipeline initially because it does not work on first time boot; requires automation user setup first
-  # script code is Groovy, not YAML
-  - script: >
-      multibranchPipelineJob('seedJobs')
-      {
-          configure
-          {
-              it / disabled << 'true'
-          }
-      }
+      JENKINSFILE_PATH: 'jenkinsfiles/seedJobs'
+  - file: ./configs/job_dsl/seedJobs.groovy

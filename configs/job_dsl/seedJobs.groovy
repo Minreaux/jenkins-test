@@ -1,7 +1,6 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins multibranch pipeline
-// Initial BRANCH_NAME value is passed in through the Jenkins Configuration as Code YAML file
-// Because this is configured as a Multibranch pipeline, BRANCH_NAME can be used in any other Job DSL jobs
-String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
+// Initial REPO_URL, BRANCH_NAME, and JENKINSFILE_PATH values are passed in through the jobs.yaml Jenkins Configuration as Code file
+// Because this is configured as a Multibranch pipeline, BRANCH_NAME can be used in any other Job DSL scripts that are seeded through this job
 multibranchPipelineJob('seedJobs')
 {
     branchSources
@@ -36,7 +35,7 @@ multibranchPipelineJob('seedJobs')
                                     {
                                         sparseCheckoutPath
                                         {
-                                            path('jenkinsfiles/seedJobs')
+                                            path(JENKINSFILE_PATH)
                                         }
                                     }
                                 }
@@ -49,9 +48,9 @@ multibranchPipelineJob('seedJobs')
                                 userRemoteConfig
                                 {
                                     credentialsId('')
-                                    name('jenkins-test')
+                                    name('')
                                     refspec('')
-                                    url('https://github.com/Minreaux/jenkins-test.git')
+                                    url(REPO_URL)
                                 }
                             }
                         }
@@ -65,7 +64,13 @@ multibranchPipelineJob('seedJobs')
     {
         workflowBranchProjectFactory
         {
-            scriptPath('jenkinsfiles/seedJobs')
+            scriptPath(JENKINSFILE_PATH)
         }
+    }
+
+    // Disables the seedJobs pipeline initially because it does not work on first time boot; requires automation user setup first
+    configure
+    {
+        it / disabled << 'true'
     }
 }
