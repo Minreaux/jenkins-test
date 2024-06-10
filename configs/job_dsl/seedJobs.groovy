@@ -50,7 +50,7 @@ multibranchPipelineJob('seedJobs')
                                     credentialsId('')
                                     name('')
                                     refspec('')
-                                    url(REPO_URL)
+                                    url(GIT_URL)
                                 }
                             }
                         }

@@ -29,7 +29,7 @@ pipeline
                     scmGit(
                         branches: [[name: BRANCH_NAME]],
                         extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
-                        userRemoteConfigs: [[url: REPO_URL]]
+                        userRemoteConfigs: [[url: GIT_URL]]
                     )
                 )
 
