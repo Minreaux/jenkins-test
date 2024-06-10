@@ -7,11 +7,11 @@ pipeline
 
     stages
     {
-        stage('Branch')
+        stage('Print Branch')
         {
             steps
             {
-                echo("branch")
+                echo(BRANCH_NAME)
             }
         }
     }
