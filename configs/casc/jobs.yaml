@@ -3,7 +3,7 @@
 # If using script code, script code is Groovy, not YAML
 jobs:
   - providedEnv:
-      REPO_URL: 'https://github.com/Minreaux/jenkins-test.git'
+      GIT_URL: 'https://github.com/Minreaux/jenkins-test.git'
       BRANCH_NAME: 'main'
       JENKINSFILE_PATH: 'jenkinsfiles/seedJobs'
   - file: ./configs/job_dsl/seedJobs.groovy

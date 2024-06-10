@@ -12,7 +12,7 @@ pipeline
 
     parameters
     {
-        string(name: 'REPO_URL', defaultValue: 'https://github.com/Minreaux/jenkins-test', description: 'Specify the URL or path of the git repository. This uses the same syntax as your git clone command.', trim: true)
+        string(name: 'GIT_URL', defaultValue: 'https://github.com/Minreaux/jenkins-test', description: 'Specify the URL or path of the git repository. This uses the same syntax as your git clone command.', trim: true)
         string(name: 'DSL_SCRIPTS', defaultValue: 'jenkinsfiles/*.groovy', description: 'Newline separated list of DSL scripts, located in the Workspace. Can use wildcards like \'jobs/**/*.groovy\'. Scripts are executed in the same order as specified. The execution order of expanded wildcards is unspecified.', trim: true)
         choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
         choice(name: 'REMOVED_VIEW_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated view is not referenced anymore.')
