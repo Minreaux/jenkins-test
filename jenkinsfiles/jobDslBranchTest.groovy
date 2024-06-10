@@ -1,4 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the jobDslBranchTest Jenkins multibranch pipeline
+// This Job-DSL script is used to test the BRANCH_NAME parameter coming from the seedJobs multibranch pipeline
 String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
 multibranchPipelineJob('jobDslBranchTest')
 {
