@@ -7,7 +7,7 @@ pipeline
 
     stages
     {
-        stage('Print Branch')
+        stage('Printing Branch Name')
         {
             steps
             {
