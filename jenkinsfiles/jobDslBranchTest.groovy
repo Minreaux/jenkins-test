@@ -1,6 +1,6 @@
-// Job DSL Groovy script that defines the job configuration for the singleBranchMultiBranch Jenkins multibranch pipeline
+// Job DSL Groovy script that defines the job configuration for the jobDslBranchTest Jenkins multibranch pipeline
 String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
-multibranchPipelineJob('singleBranchMultiBranch')
+multibranchPipelineJob('jobDslBranchTest')
 {
     branchSources
     {
@@ -34,7 +34,7 @@ multibranchPipelineJob('singleBranchMultiBranch')
                                     {
                                         sparseCheckoutPath
                                         {
-                                            path('jenkinsfiles/singleBranchMultiBranch')
+                                            path('jenkinsfiles/jobDslBranchTest')
                                         }
                                     }
                                 }
@@ -63,7 +63,7 @@ multibranchPipelineJob('singleBranchMultiBranch')
     {
         workflowBranchProjectFactory
         {
-            scriptPath('jenkinsfiles/singleBranchMultiBranch')
+            scriptPath('jenkinsfiles/jobDslBranchTest')
         }
     }
 
