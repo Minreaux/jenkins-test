@@ -28,8 +28,8 @@ pipeline
                 checkout(
                     scmGit(
                         branches: [[name: BRANCH_NAME]],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
-                        userRemoteConfigs: [[url: GIT_URL]]
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: params.DSL_SCRIPTS]]]],
+                        userRemoteConfigs: [[url: params.GIT_URL]]
                     )
                 )
 
@@ -39,11 +39,11 @@ pipeline
                     ignoreExisting: false,
                     ignoreMissingFiles: false,
                     lookupStrategy: 'JENKINS_ROOT',
-                    removedConfigFilesAction: REMOVED_JOB_ACTION,
-                    removedJobAction: REMOVED_VIEW_ACTION,
-                    removedViewAction: REMOVED_CONFIG_FILES_ACTION,
+                    removedConfigFilesAction: params.REMOVED_JOB_ACTION,
+                    removedJobAction: params.REMOVED_VIEW_ACTION,
+                    removedViewAction: params.REMOVED_CONFIG_FILES_ACTION,
                     sandbox: true,
-                    targets: DSL_SCRIPTS,
+                    targets: params.DSL_SCRIPTS,
                     unstableOnDeprecation: true,
                 )
             }
