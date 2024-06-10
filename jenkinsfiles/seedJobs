@@ -10,22 +10,26 @@ pipeline
         timeout(time: 5, unit: 'MINUTES')
     }
 
+    parameters
+    {
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/Minreaux/jenkins-test', description: 'Specify the URL or path of the git repository. This uses the same syntax as your git clone command.', trim: true)
+        string(name: 'DSL_SCRIPTS', defaultValue: 'jenkinsfiles/*.groovy', description: 'Newline separated list of DSL scripts, located in the Workspace. Can use wildcards like \'jobs/**/*.groovy\'. Scripts are executed in the same order as specified. The execution order of expanded wildcards is unspecified.', trim: true)
+        choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
+        choice(name: 'REMOVED_VIEW_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated view is not referenced anymore.')
+        choice(name: 'REMOVED_CONFIG_FILES_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when previously generated config files are not referenced anymore.')
+    }
+
     stages
     {
         stage('Seeding Jobs')
         {
-            environment
-            {
-                JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
-            }
-
             steps
             {
                 checkout(
                     scmGit(
                         branches: [[name: BRANCH_NAME]],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: JOBS_CONFIG_PATH]]]],
-                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
+                        userRemoteConfigs: [[url: REPO_URL]]
                     )
                 )
 
@@ -35,11 +39,11 @@ pipeline
                     ignoreExisting: false,
                     ignoreMissingFiles: false,
                     lookupStrategy: 'JENKINS_ROOT',
-                    removedConfigFilesAction: 'DELETE',
-                    removedJobAction: 'DELETE',
-                    removedViewAction: 'DELETE',
+                    removedConfigFilesAction: REMOVED_JOB_ACTION,
+                    removedJobAction: REMOVED_VIEW_ACTION,
+                    removedViewAction: REMOVED_CONFIG_FILES_ACTION,
                     sandbox: true,
-                    targets: JOBS_CONFIG_PATH,
+                    targets: DSL_SCRIPTS,
                     unstableOnDeprecation: true,
                 )
             }
