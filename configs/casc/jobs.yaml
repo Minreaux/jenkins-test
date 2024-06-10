@@ -1,6 +1,6 @@
 # Jobs (AKA Projects)
 # If pulling from GitHub, must use raw file links
-# script code is Groovy, not YAML
+# If using script code, script code is Groovy, not YAML
 jobs:
   - providedEnv:
       REPO_URL: 'https://github.com/Minreaux/jenkins-test.git'
