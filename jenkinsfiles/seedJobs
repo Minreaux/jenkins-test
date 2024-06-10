@@ -30,9 +30,17 @@ pipeline
                 )
 
                 jobDsl(
+                    failOnMissingPlugin: true,
+                    failOnSeedCollision: true,
+                    ignoreExisting: false,
+                    ignoreMissingFiles: false,
+                    lookupStrategy: 'JENKINS_ROOT',
+                    removedConfigFilesAction: 'DELETE',
                     removedJobAction: 'DELETE',
+                    removedViewAction: 'DELETE',
                     sandbox: true,
-                    targets: JOBS_CONFIG_PATH
+                    targets: JOBS_CONFIG_PATH,
+                    unstableOnDeprecation: true,
                 )
             }
         }
