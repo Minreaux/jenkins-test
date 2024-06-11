@@ -1,8 +1,7 @@
-// Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins multibranch pipeline
-// Initial BRANCH_NAME value is passed in through the Jenkins Configuration as Code YAML file
-// Because this is configured as a Multibranch pipeline, BRANCH_NAME can be used in any other Job DSL jobs
+// Job DSL Groovy script that defines the job configuration for the jobDslBranchTest Jenkins multibranch pipeline
+// This Job-DSL script is used to test the BRANCH_NAME parameter coming from the seedJobs multibranch pipeline
 String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
-multibranchPipelineJob('seedJobs')
+multibranchPipelineJob('jobDslBranchTest')
 {
     branchSources
     {
@@ -36,7 +35,7 @@ multibranchPipelineJob('seedJobs')
                                     {
                                         sparseCheckoutPath
                                         {
-                                            path('jenkinsfiles/seedJobs')
+                                            path('jenkinsfiles/jobDslBranchTest')
                                         }
                                     }
                                 }
@@ -49,7 +48,7 @@ multibranchPipelineJob('seedJobs')
                                 userRemoteConfig
                                 {
                                     credentialsId('')
-                                    name('jenkins-test')
+                                    name('')
                                     refspec('')
                                     url('https://github.com/Minreaux/jenkins-test.git')
                                 }
@@ -65,7 +64,18 @@ multibranchPipelineJob('seedJobs')
     {
         workflowBranchProjectFactory
         {
-            scriptPath('jenkinsfiles/seedJobs')
+            scriptPath('jenkinsfiles/jobDslBranchTest')
+        }
+    }
+
+    orphanedItemStrategy
+    {
+        defaultOrphanedItemStrategy
+        {
+            abortBuilds(true)
+            daysToKeepStr('')
+            numToKeepStr('')
+            pruneDeadBranches(true)
         }
     }
 }

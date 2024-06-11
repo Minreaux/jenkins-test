@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 // Jenkinsfile that defines a declarative Jenkins pipeline that is used to seed Jenkins Job DSL configured jobs
+// Job-DSL configuration for seedJobs is configured through the jobs.yaml Jenkins Configuration as Code file on boot
 pipeline
 {
     agent any
@@ -10,13 +11,19 @@ pipeline
         timeout(time: 5, unit: 'MINUTES')
     }
 
+    parameters
+    {
+        choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
+    }
+
     stages
     {
         stage('Seeding Jobs')
         {
             environment
             {
-                JOBS_CONFIG_PATH = 'jenkinsfiles/*.groovy'
+                GIT_URL     = 'https://github.com/Minreaux/jenkins-test'
+                DSL_SCRIPTS = 'jenkinsfiles/*.groovy'
             }
 
             steps
@@ -24,15 +31,23 @@ pipeline
                 checkout(
                     scmGit(
                         branches: [[name: BRANCH_NAME]],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: JOBS_CONFIG_PATH]]]],
-                        userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
+                        userRemoteConfigs: [[url: GIT_URL]]
                     )
                 )
 
                 jobDsl(
-                    removedJobAction: 'DELETE',
+                    failOnMissingPlugin: true,
+                    failOnSeedCollision: true,
+                    ignoreExisting: false,
+                    ignoreMissingFiles: false,
+                    lookupStrategy: 'JENKINS_ROOT',
+                    removedConfigFilesAction: 'IGNORE',
+                    removedJobAction: params.REMOVED_JOB_ACTION,
+                    removedViewAction: 'IGNORE',
                     sandbox: true,
-                    targets: JOBS_CONFIG_PATH
+                    targets: DSL_SCRIPTS,
+                    unstableOnDeprecation: true
                 )
             }
         }
