@@ -48,7 +48,7 @@ multibranchPipelineJob('jobDslBranchTest')
                                 userRemoteConfig
                                 {
                                     credentialsId('')
-                                    name('jenkins-test')
+                                    name('')
                                     refspec('')
                                     url('https://github.com/Minreaux/jenkins-test.git')
                                 }
