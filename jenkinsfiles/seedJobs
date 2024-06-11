@@ -13,8 +13,6 @@ pipeline
 
     parameters
     {
-        string(name: 'GIT_URL', defaultValue: 'https://github.com/Minreaux/jenkins-test', description: 'Specify the URL or path of the git repository. This uses the same syntax as your git clone command.', trim: true)
-        string(name: 'DSL_SCRIPTS', defaultValue: 'jenkinsfiles/*.groovy', description: 'Newline separated list of DSL scripts, located in the Workspace. Can use wildcards like \'jobs/**/*.groovy\'. Scripts are executed in the same order as specified. The execution order of expanded wildcards is unspecified.', trim: true)
         choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
     }
 
@@ -22,13 +20,19 @@ pipeline
     {
         stage('Seeding Jobs')
         {
+            environment
+            {
+                GIT_URL     = 'https://github.com/Minreaux/jenkins-test'
+                DSL_SCRIPTS = 'jenkinsfiles/*.groovy'
+            }
+
             steps
             {
                 checkout(
                     scmGit(
                         branches: [[name: BRANCH_NAME]],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: params.DSL_SCRIPTS]]]],
-                        userRemoteConfigs: [[url: params.GIT_URL]]
+                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
+                        userRemoteConfigs: [[url: GIT_URL]]
                     )
                 )
 
@@ -42,7 +46,7 @@ pipeline
                     removedJobAction: params.REMOVED_JOB_ACTION,
                     removedViewAction: 'IGNORE',
                     sandbox: true,
-                    targets: params.DSL_SCRIPTS,
+                    targets: DSL_SCRIPTS,
                     unstableOnDeprecation: true
                 )
             }
