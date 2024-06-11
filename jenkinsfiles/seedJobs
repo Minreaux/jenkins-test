@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 // Jenkinsfile that defines a declarative Jenkins pipeline that is used to seed Jenkins Job DSL configured jobs
+// Job-DSL configuration for seedJobs is configured through the jobs.yaml Jenkins Configuration as Code file on boot
 pipeline
 {
     agent any
