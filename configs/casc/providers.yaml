@@ -1,0 +1,27 @@
+# Manage Jenkins >> Credentials Providers
+globalCredentialsConfiguration:
+  configuration:
+
+    providerFilter:
+      includes:
+        classNames:
+        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
+        - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
+        - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+
+    typeFilter:
+      includes:
+        classNames:
+        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
