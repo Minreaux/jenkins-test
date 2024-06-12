@@ -22,19 +22,11 @@ pipeline
         {
             environment
             {
-                GIT_URL     = 'https://github.com/Minreaux/jenkins-test'
-                DSL_SCRIPTS = 'jenkinsfiles/*.groovy'
+                DSL_SCRIPTS = 'C:\\Users\\Jhenna-Rae.Foronda-C\\GitHub\\jenkins-test\\jenkinsfiles\\*.groovy'
             }
 
             steps
             {
-                checkout(
-                    scmGit(
-                        branches: [[name: BRANCH_NAME]],
-                        extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: DSL_SCRIPTS]]]],
-                        userRemoteConfigs: [[url: GIT_URL]]
-                    )
-                )
 
                 jobDsl(
                     failOnMissingPlugin: true,
