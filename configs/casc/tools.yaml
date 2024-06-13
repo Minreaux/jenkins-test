@@ -1,6 +1,7 @@
 # Manage Jenkins >> Tools
 tool:
 
+  # Maven Configuration
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

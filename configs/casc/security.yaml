@@ -1,18 +1,8 @@
 # Manage Jenkins >> Security
 jenkins:
 
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
-
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
-
+  # Authentication
   disableRememberMe: false
-
-  markupFormatter: "plainText"
-
   securityRealm:
     mock:
       data: |-
@@ -28,26 +18,43 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
 
+  # Markup Formatter
+  markupFormatter: "plainText"
+
+  # Agents
   slaveAgentPort: -1
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+
+  # CSRF Protection
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
 
 
 security:
 
+  # API Token
   apiToken:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
 
+  # Git Hooks
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
 
+  # Git Host Key Verification Configuration
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
 
+  # Enable script security for Job DSL scripts
   globalJobDslSecurityConfiguration:
     useScriptSecurity: true
 
+  # Access Control for Builds
   queueItemAuthenticator:
     authenticators:
     - global:

@@ -1,7 +1,7 @@
 # Manage Jenkins >> Nodes
 jenkins:
 
-  # >> Configure Monitors
+  # Configure Monitors
   nodeMonitors:
   - "architecture"
   - "clock"
