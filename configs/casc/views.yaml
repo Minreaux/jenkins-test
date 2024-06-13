@@ -1,14 +1,23 @@
-# My Views
+# Views
 jenkins:
 
   myViewsTabBar: "standard"
-
-  primaryView:
-    all:
-      name: "all"
+  viewsTabBar: "standard"
 
   views:
   - all:
       name: "all"
 
-  viewsTabBar: "standard"
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      description: "Lists all jobs other than seedJobs."
+      filterQueue: true
+      includeRegex: "(?!^seedJobs$)(^.*$)"
+      name: "Normal Jobs"

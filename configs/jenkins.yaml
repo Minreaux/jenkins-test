@@ -5,7 +5,6 @@ credentials:
       - vaultAppRoleCredential:
           id: "vault-jenkins-role"
           path: "approle"
-          roleId: "${CASC_VAULT_APPROLE}"
           scope: GLOBAL
           secretId: "${CASC_VAULT_APPROLE_SECRET}"
           usePolicies: false
@@ -89,6 +88,8 @@ jenkins:
   - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
+  - name: "jenkins-controller"
+  labelString: "jenkins-controller"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -130,11 +131,25 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: -1
+  systemMessage: "Welcome to Jenkins Test!"
   updateCenter:
     sites:
     - id: "default"
       url: "https://updates.jenkins.io/update-center.json"
   views:
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      description: "Lists all jobs other than seedJobs."
+      filterQueue: true
+      includeRegex: "(?!^seedJobs$)(^.*$)"
+      name: "Normal Jobs"
   - all:
       name: "all"
   viewsTabBar: "standard"
