@@ -1,6 +1,7 @@
 # Manage Jenkins >> Plugins
 jenkins:
 
+  # Advanced settings >> Update Site
   updateCenter:
     sites:
     - id: "default"

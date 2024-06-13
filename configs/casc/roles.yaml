@@ -1,9 +1,11 @@
-# Manage Jenkins >> Manage and Assign Roles
 jenkins:
+  # Manage Jenkins >> Security >> Authorization
   authorizationStrategy:
     roleBased:
+      # Manage Jenkins >> Manage and Assign Roles
       roles:
 
+        # Global roles
         global:
         - entries:
           - group: "FullAdmin"
@@ -56,6 +58,7 @@ jenkins:
           permissions:
           - "Overall/Read"
 
+        # Item roles
         items:
         - entries:
           - group: "JobManager"

@@ -1,35 +1,43 @@
 # Manage Jenkins >> System
 # Do not add "remotingSecurity" section as per https://www.jenkins.io/doc/book/security/controller-isolation/jep-235/#api-compatibility
+# Do not add 'labelAtoms' section as these labels should be controlled through nodes 'labelString' key-value pairs in nodes.yaml
 jenkins:
 
-  disabledAdministrativeMonitors:
-  - "hudson.util.DoubleLaunchChecker"
-
-  mode: NORMAL
-
-  noUsageStatistics: true
-  
+  # Configure System (Jenkins controller / built-in node)
+  systemMessage: "Welcome to Jenkins Test!"
   numExecutors: 2
-
+  labelString: "jenkins-controller"
+  mode: NORMAL
+  quietPeriod: 5
+  scmCheckoutRetryCount: 0
+  primaryView: # Only view type (all, list, etc) and name key-value pair is required for this to work; view must be defined in views.yaml
+    all:
+      name: "all"
   projectNamingStrategy:
     roleBased:
       forceExistingJobs: false
 
-  quietPeriod: 5
+  # Usage Statistics
+  noUsageStatistics: true
 
-  scmCheckoutRetryCount: 0
+  # Administrative monitors configuration
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
 
 
 unclassified:
 
+  # Global Build Discarders
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
 
+  # Fingerprints
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
 
+  # Global Pipeline Libraries
   globalLibraries:
     libraries:
     - defaultVersion: "main"
@@ -47,6 +55,7 @@ unclassified:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
 
+  # Vault Plugin
   hashicorpVault:
     configuration:
       disableChildPoliciesOverride: false
@@ -56,18 +65,22 @@ unclassified:
       vaultCredentialId: "vault-jenkins-role"
       vaultUrl: "${CASC_VAULT_URL}"
 
+  # Jenkins Location
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
 
+  # E-mail Notification
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
 
+  # SCM Polling
   pollSCM:
     pollingThreadCount: 10
 
+  # Git plugin
   scmGit:
     addGitTagAction: false
     allowSecondFetch: false

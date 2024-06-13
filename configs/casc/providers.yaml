@@ -2,6 +2,7 @@
 globalCredentialsConfiguration:
   configuration:
 
+    # Providers
     providerFilter:
       includes:
         classNames:
@@ -9,6 +10,7 @@ globalCredentialsConfiguration:
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
 
+    # Types
     typeFilter:
       includes:
         classNames:

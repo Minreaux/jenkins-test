@@ -1,14 +1,26 @@
-# My Views
+# Views
 jenkins:
 
   myViewsTabBar: "standard"
+  viewsTabBar: "standard"
 
-  primaryView:
-    all:
-      name: "all"
-
+  # These are global views; views created under My Views are not globally available and cannot be managed through JCasC
   views:
+  # All
   - all:
       name: "all"
 
-  viewsTabBar: "standard"
+  # Normal Jobs
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      description: "Lists all jobs other than seedJobs."
+      filterQueue: true
+      includeRegex: "(?!^seedJobs$)(^.*$)"
+      name: "Normal Jobs"
