@@ -6,7 +6,3 @@ jenkins:
       - level: "INFO"
         name: "io.jenkins.plugins.casc"
       name: "Configuration as Code Logs"
-    - loggers:
-      - level: "INFO"
-        name: "javaposse.jobdsl"
-      name: "Job DSL Logs"
