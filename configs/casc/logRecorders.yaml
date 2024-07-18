@@ -1,0 +1,12 @@
+# Manage Jenkins >> System Log >> Log Recorders
+jenkins:
+  log:
+    recorders:
+    - loggers:
+      - level: "ALL"
+        name: "io.jenkins.plugins.casc"
+      name: "Configuration as Code Logs"
+    - loggers:
+      - level: "ALL"
+        name: "javaposse.jobdsl"
+      name: "Job DSL Logs"
