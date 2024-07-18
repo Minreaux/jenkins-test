@@ -3,6 +3,8 @@
 // Because this is configured as a Multibranch pipeline, BRANCH_NAME can be used in any other Job DSL scripts that are seeded through this job
 multibranchPipelineJob('seedJobs')
 {
+    description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
+    
     branchSources
     {
         branchSource
