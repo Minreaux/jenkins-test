@@ -3,10 +3,10 @@ jenkins:
   log:
     recorders:
     - loggers:
-      - level: "ALL"
+      - level: "INFO"
         name: "io.jenkins.plugins.casc"
       name: "Configuration as Code Logs"
     - loggers:
-      - level: "ALL"
+      - level: "INFO"
         name: "javaposse.jobdsl"
       name: "Job DSL Logs"
