@@ -28,7 +28,7 @@ If you want to run this Jenkins instance with the configured 1Password service a
 
 - `OP_SERVICE_ACCOUNT_TOKEN`: 1Password service account authentication token used to access your 1Password vault
 - `OP_CLI_PATH`: 1Password CLI local install path
-    - If you installed the 1Password CLI on Windows using Winget, the path should be `$env:LOCALAPPDATA\Microsoft\WinGet\Packages\AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe\op.exe`
+    - If you installed the 1Password CLI on Windows using Winget, the path should be `$env:LOCALAPPDATA\Microsoft\WinGet\Packages\AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe` (do not include `op` executable in path)
 
 > **_NOTE:_** Requires Jenkins secret text credential type to be enabled.
 
