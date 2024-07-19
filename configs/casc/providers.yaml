@@ -14,6 +14,7 @@ globalCredentialsConfiguration:
     typeFilter:
       includes:
         classNames:
+        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
         - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
