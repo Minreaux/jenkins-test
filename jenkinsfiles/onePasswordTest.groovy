@@ -14,7 +14,7 @@ multibranchPipelineJob('onePasswordTest')
     {
         workflowBranchProjectFactory
         {
-            scriptPath('jenkinsfiles/1passwordTest')
+            scriptPath('jenkinsfiles/onePasswordTest')
         }
     }
 
