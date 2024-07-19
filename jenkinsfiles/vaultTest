@@ -17,8 +17,8 @@ pipeline
         {
             environment
             {
-                SCRIPT_PATH = 'scripts/writefile.py'
                 FILE_NAME   = 'secret.txt'
+                SCRIPT_PATH = 'scripts/writefile.py'
             }
 
             steps
