@@ -27,4 +27,4 @@ globalCredentialsConfiguration:
         - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
-        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
+        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl" # Secret text
