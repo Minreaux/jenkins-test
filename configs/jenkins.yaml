@@ -9,9 +9,15 @@ credentials:
           secretId: "${CASC_VAULT_APPROLE_SECRET}"
           usePolicies: false
       - vaultStringCredentialImpl:
-          engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
-          id: "vault-secret-text"
-          path: "kv/jenkins/secret-text"
+          engineVersion: "1"
+          id: "vault-kv1-secret"
+          path: "kv1/jenkins/secret-text"
+          scope: GLOBAL
+          vaultKey: "secret"
+      - vaultStringCredentialImpl:
+          engineVersion: "2"
+          id: "vault-kv2-secret"
+          path: "v1/kv2/data/jenkins/secret-text"
           scope: GLOBAL
           vaultKey: "secret"
       - string:

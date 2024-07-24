@@ -11,6 +11,11 @@ pipeline
         buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
     }
 
+    parameters
+    {
+        choice(name: 'KV_SECRET', choices: ['vault-kv1-secret', 'vault-kv2-secret'], description: 'Specifies which key-value secrets engine version secret to use')
+    }
+
     stages
     {
         stage('Getting Secret from Vault')
@@ -31,7 +36,7 @@ pipeline
                     )
                 )
 
-                withCredentials([vaultString(credentialsId: 'vault-secret-text', variable: 'MYSECRET')])
+                withCredentials([vaultString(credentialsId: params.KV_SECRET, variable: 'MYSECRET')])
                 {
                     pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
                 }
