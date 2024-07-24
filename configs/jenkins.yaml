@@ -3,7 +3,7 @@ credentials:
     domainCredentials:
     - credentials:
       - vaultAppRoleCredential:
-          id: "vault-jenkins-role"
+          id: "vault-role-jenkins"
           path: "approle"
           scope: GLOBAL
           secretId: "${CASC_VAULT_APPROLE_SECRET}"
@@ -11,7 +11,7 @@ credentials:
       - vaultStringCredentialImpl:
           engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
           id: "vault-secret-text"
-          path: "secrets/creds/secret-text"
+          path: "kv/jenkins/secret-text"
           scope: GLOBAL
           vaultKey: "secret"
       - string:
@@ -248,7 +248,7 @@ unclassified:
       engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
       skipSslVerification: true
       timeout: 60
-      vaultCredentialId: "vault-jenkins-role"
+      vaultCredentialId: "vault-role-jenkins"
       vaultUrl: "${CASC_VAULT_URL}"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"

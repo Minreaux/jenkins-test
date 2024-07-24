@@ -68,7 +68,7 @@ unclassified:
       engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
       skipSslVerification: true
       timeout: 60
-      vaultCredentialId: "vault-jenkins-role"
+      vaultCredentialId: "vault-role-jenkins"
       vaultUrl: "${CASC_VAULT_URL}"
 
   # Jenkins Location
