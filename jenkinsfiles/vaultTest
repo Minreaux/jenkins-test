@@ -31,7 +31,7 @@ pipeline
                     )
                 )
 
-                withCredentials([vaultString(credentialsId: 'vault-secret-text', variable: 'MYSECRET')])
+                withCredentials([string(credentialsId: 'vault-secret-text', variable: 'MYSECRET')])
                 {
                     pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
                 }
