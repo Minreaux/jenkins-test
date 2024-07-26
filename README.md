@@ -24,7 +24,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 > **_NOTE:_** All Jenkins credentials types that are not used by the 1Password Secrets or HashiCorp Vault plugins have been disabled for this Jenkins environment.
 
 ## With 1Password Secrets
-If you want to run this Jenkins instance with the configured 1Password service account and 1Password credentials, you must [install the 1Password CLI](https://developer.1password.com/docs/cli/get-started/) on your local machine and set the following environment variables before running the `Install-Jenkins.ps1` script:
+If you want to run this Jenkins instance with the configured 1Password service account and 1Password credentials, you must [install the 1Password CLI](https://developer.1password.com/docs/cli/get-started/) on your local machine and set the `SECRET_FILE` environment variable to the local path of your `configs\properties\secrets.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `secrets.properties` file for your 1Password setup:
 
 - `OP_SERVICE_ACCOUNT_TOKEN`: 1Password service account authentication token used to access your 1Password vault
 - `OP_CLI_PATH`: 1Password CLI local install path
