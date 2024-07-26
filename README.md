@@ -21,7 +21,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 
 > **_NOTE:_** Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonmyous" which does not have any permissions. The "auto" user is created after first time login.
 
-> **_NOTE:_** All Jenkins credentials types that are not used by the 1Password Secrets or HashiCorp Vault plugins have been disabled for this Jenkins environment.
+> **_NOTE:_** All Jenkins credentials types that are not used in this Jenkins environment have been disabled through the `configs\casc\providers.yaml`.
 
 ## With 1Password Secrets
 If you want to run this Jenkins instance with the configured 1Password service account and 1Password credentials, you must [install the 1Password CLI](https://developer.1password.com/docs/cli/get-started/) on your local machine and set the `SECRET_FILE` environment variable to the local path of your `configs\properties\secrets.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `secrets.properties` file for your 1Password setup:
@@ -36,7 +36,7 @@ If you want to run this Jenkins instance with the configured 1Password service a
 If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, you must set the `CASC_VAULT_FILE` environment variable to the local path of your `configs\properties\vault.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `vault.properties` file for your Vault server:
 
 - `CASC_VAULT_URL`: Vault server URL
-- `CASC_VAULT_PATHS`: Vault kv secret paths that you want Jenkins to be able to access (comma-delimited for multiple paths)
+- `CASC_VAULT_PATHS`: Vault kv secret paths that you want Jenkins to be able to access; comma-delimited for multiple paths
 - `CASC_VAULT_APPROLE`: Vault AppRole ID
 - `CASC_VAULT_APPROLE_SECRET`: Vault AppRole Secret ID
 - `CASC_VAULT_ENGINE_VERSION`: Vault kv secret engine version 1 or 2
