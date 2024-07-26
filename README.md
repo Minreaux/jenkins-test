@@ -32,15 +32,5 @@ If you want to run this Jenkins instance with the configured 1Password service a
 
 > **_NOTE:_** Requires Jenkins secret text credential type to be enabled.
 
-## With HashiCorp Vault
-If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, set the following environment variables before running the `Install-Jenkins.ps1` script:
-
-- `CASC_VAULT_URL`: Vault server URL
-- `CASC_VAULT_APPROLE`: Vault AppRole ID
-- `CASC_VAULT_APPROLE_SECRET`: Vault AppRole Secret ID
-- `CASC_VAULT_ENGINE_VERSION`: Vault kv secret engine version "1" or "2"
-
-> **_NOTE:_** Requires HashiCorp Vault Jenkins credentials types to be enabled.
-
 ## Cleanup
 To restart and test a new Jenkins installation, delete the `jenkins/` directory; when that directory is deleted, the `Install_Jenkins.ps1` script will re-install Jenkins from scratch.
