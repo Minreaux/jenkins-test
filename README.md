@@ -33,5 +33,9 @@ You must also update the following variables in the `vault.properties` file for 
 - `CASC_VAULT_APPROLE_SECRET`: Vault AppRole Secret ID
 - `CASC_VAULT_ENGINE_VERSION`: Vault kv secret engine version 1 or 2
 
+There are 2 ways to pass secrets to Jenkins from Vault:
+1. Vault as a secret source for JCasC: this passes secrets from Vault to Jenkins JCasC on boot. If these secrets are passed into normal Jenkins credentials types (i.e. secret-text) then these secrets are static. To update these secrets, you must make the change to the secret in Vault and you must restart Jenkins.
+2. Vault credentials types: this uses the built-in Vault Jenkins credentials types. These pull the secrets directly from Vault, therefore you need only update the secret in Vault and Jenkins will pull the latest secret from Vault. No Jenkins restart required.
+
 ## Cleanup
 To restart and test a new Jenkins installation, delete the `jenkins/` directory; when that directory is deleted, the `Install_Jenkins.ps1` script will re-install Jenkins from scratch.
