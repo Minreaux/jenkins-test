@@ -30,15 +30,24 @@ pipeline
             {
                 checkout(
                     scmGit(
-                        branches: [[name: BRANCH_NAME]],
+                        branches: [[name: BRANCH_NAME],
                         extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: SCRIPT_PATH]]]],
                         userRemoteConfigs: [[url: 'https://github.com/Minreaux/jenkins-test']]
                     )
                 )
 
-                withCredentials([vaultString(credentialsId: params.VAULT_SECRET_ID, variable: 'MYSECRET')])
+                script
                 {
-                    pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                    def credentials = [vaultString(credentialsId: params.VAULT_SECRET_ID, variable: 'MYSECRET')]
+                    if (params.VAULT_SECRET_ID == 'vault-source-secret-text')
+                    {
+                        credentials = [string(credentialsId: params.VAULT_SECRET_ID, variable: 'MYSECRET')]
+                    }
+
+                    withCredentials(credentials)
+                    {
+                        pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                    }
                 }
 
                 archiveArtifacts(artifacts: FILE_NAME)
