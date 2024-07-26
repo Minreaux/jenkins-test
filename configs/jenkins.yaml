@@ -14,6 +14,11 @@ credentials:
           path: "kv/jenkins/secret-text"
           scope: GLOBAL
           vaultKey: "secret"
+      - string:
+          description: "Secret passed in from Vault as a secret source for JCasC"
+          id: "vault-source-secret-text"
+          scope: GLOBAL
+          secret: "${kv/jenkins/secret-text/secret}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -170,6 +175,7 @@ globalCredentialsConfiguration:
     typeFilter:
       includes:
         classNames:
+        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
         - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
