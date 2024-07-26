@@ -2,11 +2,18 @@ credentials:
   system:
     domainCredentials:
     - credentials:
-      - string:
-          description: "Vault-managed secret-text credential"
-          id: "vault-secret-text"
+      - vaultAppRoleCredential:
+          id: "vault-role-jenkins"
+          path: "approle"
           scope: GLOBAL
-          secret: "${kv/jenkins/secret-text/secret}"
+          secretId: "${CASC_VAULT_APPROLE_SECRET}"
+          usePolicies: false
+      - vaultStringCredentialImpl:
+          engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+          id: "vault-secret-text"
+          path: "kv/jenkins/secret-text"
+          scope: GLOBAL
+          vaultKey: "secret"
       - string:
           description: "1Password Service Account Authorization Token"
           id: "op-service-account-token"
@@ -162,12 +169,26 @@ globalCredentialsConfiguration:
     providerFilter:
       includes:
         classNames:
+        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
     typeFilter:
       includes:
         classNames:
         - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
 appearance:
   pipelineGraphView:
     showGraphOnBuildPage: true
@@ -224,9 +245,11 @@ unclassified:
   hashicorpVault:
     configuration:
       disableChildPoliciesOverride: false
-      engineVersion: "2"
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
       skipSslVerification: true
       timeout: 60
+      vaultCredentialId: "vault-role-jenkins"
+      vaultUrl: "${CASC_VAULT_URL}"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
