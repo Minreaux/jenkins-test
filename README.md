@@ -24,7 +24,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 > **_NOTE:_** All Jenkins credentials types that are not used in this Jenkins environment have been disabled through the `configs\casc\providers.yaml`.
 
 ## With HashiCorp Vault
-If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, you must set the `CASC_VAULT_FILE` and `SECRET_FILE` environment variables to the local path of your `configs\properties\vault.properties` file before running the `Install-Jenkins.ps1` script.
+If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, you must set the `CASC_VAULT_FILE` and `SECRETS_FILE` environment variables to the local path of your `configs\properties\vault.properties` file before running the `Install-Jenkins.ps1` script.
 
 You must also update the following variables in the `vault.properties` file for your Vault server:
 - `CASC_VAULT_URL`: Vault server URL
