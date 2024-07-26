@@ -66,6 +66,7 @@ unclassified:
   hashicorpVault:
     configuration:
       disableChildPoliciesOverride: false
+      engineVersion: "2" # This is the default value; not enforced when using Vault as a secret source for JCasC
       skipSslVerification: true
       timeout: 60
 

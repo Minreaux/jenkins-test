@@ -224,9 +224,9 @@ unclassified:
   hashicorpVault:
     configuration:
       disableChildPoliciesOverride: false
+      engineVersion: "2"
       skipSslVerification: true
       timeout: 60
-      vaultCredentialId: "vault-role-jenkins"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
