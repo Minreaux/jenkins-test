@@ -23,17 +23,8 @@ Mock accounts will be configured automatically and can be used to login. For the
 
 > **_NOTE:_** All Jenkins credentials types that are not used in this Jenkins environment have been disabled through the `configs\casc\providers.yaml`.
 
-## With 1Password Secrets
-If you want to run this Jenkins instance with the configured 1Password service account and 1Password credentials, you must [install the 1Password CLI](https://developer.1password.com/docs/cli/get-started/) on your local machine and set the `SECRET_FILE` environment variable to the local path of your `configs\properties\secrets.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `secrets.properties` file for your 1Password setup:
-
-- `OP_SERVICE_ACCOUNT_TOKEN`: 1Password service account authentication token used to access your 1Password vault
-- `OP_CLI_PATH`: 1Password CLI local install path
-    - If you installed the 1Password CLI on Windows using Winget, the path should be `$env:LOCALAPPDATA\Microsoft\WinGet\Packages\AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe` (do not include `op` executable in path)
-
-> **_NOTE:_** Requires Jenkins secret text credential type to be enabled to pass 1Password the "secret zero".
-
 ## With HashiCorp Vault
-If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, you must set the `CASC_VAULT_FILE` environment variable to the local path of your `configs\properties\vault.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `vault.properties` file for your Vault server:
+If you want to run this Jenkins instance with the configured HashiCorp Vault credentials, you must set the `CASC_VAULT_FILE` and `SECRET_FILE` environment variables to the local path of your `configs\properties\vault.properties` file before running the `Install-Jenkins.ps1` script. You must also update the following variables in the `vault.properties` file for your Vault server:
 
 - `CASC_VAULT_URL`: Vault server URL
 - `CASC_VAULT_PATHS`: Vault kv secret paths that you want Jenkins to be able to access; comma-delimited for multiple paths

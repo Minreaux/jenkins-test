@@ -14,11 +14,6 @@ credentials:
           path: "kv/jenkins/secret-text"
           scope: GLOBAL
           vaultKey: "secret"
-      - string:
-          description: "1Password Service Account Authorization Token"
-          id: "op-service-account-token"
-          scope: GLOBAL
-          secret: "${OP_SERVICE_ACCOUNT_TOKEN}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -175,7 +170,6 @@ globalCredentialsConfiguration:
     typeFilter:
       includes:
         classNames:
-        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
         - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
@@ -216,10 +210,6 @@ security:
           specificUsersAuthorizationStrategy:
             userid: "auto"
 unclassified:
-  1Password Config:
-    config:
-      opCLIPath: "${OP_CLI_PATH}"
-      serviceAccountCredentialId: "op-service-account-token"
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
