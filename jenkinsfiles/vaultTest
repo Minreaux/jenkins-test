@@ -11,6 +11,11 @@ pipeline
         buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
     }
 
+    parameters
+    {
+        choice(name: 'VAULT_SECRET_ID', choices: ['vault-secret-text', 'vault-source-secret-text'], description: 'Specifies which Vault secret to capture')
+    }
+
     stages
     {
         stage('Getting Secret from Vault')
@@ -31,9 +36,18 @@ pipeline
                     )
                 )
 
-                withCredentials([vaultString(credentialsId: 'vault-secret-text', variable: 'MYSECRET')])
+                script
                 {
-                    pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                    def credentials = [vaultString(credentialsId: params.VAULT_SECRET_ID, variable: 'MYSECRET')]
+                    if (params.VAULT_SECRET_ID == 'vault-source-secret-text')
+                    {
+                        credentials = [string(credentialsId: params.VAULT_SECRET_ID, variable: 'MYSECRET')]
+                    }
+
+                    withCredentials(credentials)
+                    {
+                        pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                    }
                 }
 
                 archiveArtifacts(artifacts: FILE_NAME)

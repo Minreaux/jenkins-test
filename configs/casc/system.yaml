@@ -27,12 +27,6 @@ jenkins:
 
 unclassified:
 
-  # 1Password Secrets
-  1Password Config:
-    config:
-      opCLIPath: "${OP_CLI_PATH}"
-      serviceAccountCredentialId: "op-service-account-token"
-
   # Global Build Discarders
   buildDiscarders:
     configuredBuildDiscarders:
