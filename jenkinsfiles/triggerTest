@@ -1,0 +1,30 @@
+#!/usr/bin/env groovy
+
+// Jenkinsfile that defines a declarative Jenkins pipeline used to test Jenkins triggers with Job DSL
+pipeline
+{
+    agent any
+
+    triggers
+    {
+        // Trigger this job every 1 minute
+        cron('* * * * *')
+    }
+
+    options
+    {
+        // Keep only 1 build artifact
+        buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
+    }
+
+    stages
+    {
+        stage('Testing trigger...')
+        {
+            steps
+            {
+                echo("Trigger test ${BUILD_NUMBER}")
+            }
+        }
+    }
+}
