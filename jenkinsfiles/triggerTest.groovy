@@ -38,7 +38,7 @@ pipelineJob('triggerTest')
                     spec(
                         '''
                         TZ=America/New_York
-                        H 2 * * *
+                        * * * * *
                         '''
                     )
                 }
