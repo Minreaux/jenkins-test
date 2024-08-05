@@ -20,6 +20,6 @@ pipelineJob("triggerTest")
             }
         }
     }
-    keepDependencies(false)
+
     disabled(false)
 }
