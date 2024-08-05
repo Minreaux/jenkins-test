@@ -35,8 +35,12 @@ pipelineJob('triggerTest')
             {
                 cron
                 {
-                    // Trigger this job every 1 minute
-                    spec('* * * * *')
+                    spec(
+                        '''
+                        TZ=America/New_York
+                        H 2 * * *
+                        '''
+                    )
                 }
             }
         }
