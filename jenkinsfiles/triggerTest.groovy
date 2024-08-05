@@ -24,4 +24,20 @@ pipelineJob('triggerTest')
     }
 
     disabled(false)
+
+    properties
+    {
+        pipelineTriggers
+        {
+            triggers
+            {
+                cron
+                {
+                    // Trigger this job every 1 minute
+                    spec('* * * * *')
+                }
+            }
+        }
+    }
+
 }

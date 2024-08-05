@@ -14,7 +14,6 @@ pipeline
     parameters
     {
         choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
-        // TODO: Create parameter to auto-start updated jobs
     }
 
     stages
@@ -37,24 +36,19 @@ pipeline
                     )
                 )
 
-                script
-                {
-                    def dslInfo = jobDsl(
-                        failOnMissingPlugin: true,
-                        failOnSeedCollision: true,
-                        ignoreExisting: false,
-                        ignoreMissingFiles: false,
-                        lookupStrategy: 'JENKINS_ROOT',
-                        removedConfigFilesAction: 'IGNORE',
-                        removedJobAction: params.REMOVED_JOB_ACTION,
-                        removedViewAction: 'IGNORE',
-                        sandbox: true,
-                        targets: DSL_SCRIPTS,
-                        unstableOnDeprecation: true
-                    )
-
-                    echo("${dslInfo}")
-                }
+                jobDsl(
+                    failOnMissingPlugin: true,
+                    failOnSeedCollision: true,
+                    ignoreExisting: false,
+                    ignoreMissingFiles: false,
+                    lookupStrategy: 'JENKINS_ROOT',
+                    removedConfigFilesAction: 'IGNORE',
+                    removedJobAction: params.REMOVED_JOB_ACTION,
+                    removedViewAction: 'IGNORE',
+                    sandbox: true,
+                    targets: DSL_SCRIPTS,
+                    unstableOnDeprecation: true
+                )
             }
         }
     }

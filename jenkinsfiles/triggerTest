@@ -5,12 +5,6 @@ pipeline
 {
     agent any
 
-    triggers
-    {
-        // Trigger this job every 1 minute
-        cron('* * * * *')
-    }
-
     options
     {
         // Keep the history for only 10 builds and keep only 1 build artifact
