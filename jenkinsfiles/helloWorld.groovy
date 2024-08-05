@@ -31,9 +31,6 @@ multibranchPipelineJob('helloWorld')
 
     triggers
     {
-        periodicFolderTrigger
-        {
-            interval('1m')
-        }
+        cron('* * * * *')
     }
 }
