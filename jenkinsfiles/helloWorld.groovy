@@ -28,4 +28,12 @@ multibranchPipelineJob('helloWorld')
             pruneDeadBranches(true)
         }
     }
+
+    triggers
+    {
+        cron
+        {
+            spec('* * * * *')
+        }
+    }
 }
