@@ -13,8 +13,8 @@ pipeline
 
     options
     {
-        // Keep only 1 build artifact
-        buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
+        // Keep the history for only 10 builds and keep only 1 build artifact
+        buildDiscarder(logRotator(artifactNumToKeepStr: '1', numToKeepStr: '10'))
         skipDefaultCheckout()
     }
 
