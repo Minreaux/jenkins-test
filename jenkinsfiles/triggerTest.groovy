@@ -1,17 +1,17 @@
 // Job DSL Groovy script that defines the job configuration for the triggerTest Jenkins pipeline
-pipelineJob("triggerTest") 
+pipelineJob('triggerTest')
 {
-    definition 
+    definition
     {
-        cpsScm 
+        cpsScm
         {
-            scm 
+            scm
             {
-                git 
+                git
                 {
                     branch('test-job-dsl')
                     lightweight(true)
-                    remote 
+                    remote
                     {
                         url('https://github.com/Minreaux/jenkins-test.git')
                     }
