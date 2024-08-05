@@ -35,12 +35,7 @@ pipelineJob('triggerTest')
             {
                 cron
                 {
-                    spec(
-                        '''
-                        TZ=America/New_York
-                        * * * * *
-                        '''
-                    )
+                    spec('''TZ=America/New_York\n* * * * *''')
                 }
             }
         }
