@@ -39,7 +39,7 @@ pipeline
                 jobDsl(
                     failOnMissingPlugin: true,
                     failOnSeedCollision: true,
-                    ignoreExisting: false,
+                    ignoreExisting: true,
                     ignoreMissingFiles: false,
                     lookupStrategy: 'JENKINS_ROOT',
                     removedConfigFilesAction: 'IGNORE',

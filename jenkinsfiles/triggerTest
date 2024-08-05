@@ -15,6 +15,7 @@ pipeline
     {
         // Keep only 1 build artifact
         buildDiscarder(logRotator(artifactNumToKeepStr: '1'))
+        skipDefaultCheckout()
     }
 
     stages
