@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 // Jenkinsfile that defines a declarative Jenkins pipeline used to test Jenkins triggers with Job DSL
+// For triggers to be present after seedJobs applies, the trigger must be present in the Job DSL script, not the pipeline Jenkinsfile
 pipeline
 {
     agent any
