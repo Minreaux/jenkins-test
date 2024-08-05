@@ -5,17 +5,19 @@ pipelineJob('triggerTest')
     {
         cpsScm
         {
+            lightweight(true)
+
             scm
             {
+                scriptPath("jenkinsfiles/triggerTest")
+
                 git
                 {
                     branch('test-job-dsl')
-                    lightweight(true)
                     remote
                     {
                         url('https://github.com/Minreaux/jenkins-test.git')
                     }
-                    scriptPath("jenkinsfiles/triggerTest")
                 }
             }
         }
