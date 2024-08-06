@@ -35,7 +35,7 @@ pipelineJob('triggerTest')
             {
                 cron
                 {
-                    spec(env.BRANCH_NAME == 'test-triggers' ? '* * * * *' : '')
+                    spec(BRANCH_NAME == 'test-triggers' ? '* * * * *' : '')
                 }
             }
         }
