@@ -35,7 +35,7 @@ pipelineJob('triggerTest')
             {
                 cron
                 {
-                    spec('''TZ=America/New_York\n* * * * *''')
+                    spec(env.BRANCH_NAME == 'test-triggers' ? '* * * * *' : '')
                 }
             }
         }
