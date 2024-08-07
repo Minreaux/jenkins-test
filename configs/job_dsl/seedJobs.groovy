@@ -4,55 +4,49 @@
 multibranchPipelineJob('seedJobs')
 {
     description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
-    
-    branchSources
+
+    branchSources 
     {
-        branchSource
+        branchSource 
         {
-            source
+            strategy 
             {
-                fromScm
+                allBranchesSame 
                 {
-                    name(BRANCH_NAME)
-
-                    scm
+                    props 
                     {
-                        gitSCM
+                        suppressAutomaticTriggering 
                         {
-                            branches
-                            {
-                                branchSpec
-                                {
-                                    name(BRANCH_NAME)
-                                }
-                            }
+                            strategy('NONE')
+                            triggeredBranchesRegex('^$')
+                        }
+                    }
+                }
+            }
 
-                            browser {}
+            source 
+            {
+                git
+                {
+                    remote(GIT_URL)
 
-                            extensions
+                    traits
+                    {
+                        headRegexFilter
+                        {
+                            regex("${BRANCH_NAME}*")
+                        }
+
+                        sparseCheckoutPaths
+                        {
+                            extension
                             {
                                 sparseCheckoutPaths
                                 {
-                                    sparseCheckoutPaths
+                                    spaceCheckoutPath
                                     {
-                                        sparseCheckoutPath
-                                        {
-                                            path(JENKINSFILE_PATH)
-                                        }
+                                        path(JENKINSFILE_PATH)
                                     }
-                                }
-                            }
-
-                            gitTool('')
-
-                            userRemoteConfigs
-                            {
-                                userRemoteConfig
-                                {
-                                    credentialsId('')
-                                    name('')
-                                    refspec('')
-                                    url(GIT_URL)
                                 }
                             }
                         }
