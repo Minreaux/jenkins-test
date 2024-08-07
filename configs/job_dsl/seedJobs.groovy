@@ -34,7 +34,7 @@ multibranchPipelineJob('seedJobs')
                     {
                         headRegexFilter
                         {
-                            regex("${BRANCH_NAME}*")
+                            regex("${BRANCH_NAME}.*")
                         }
 
                         sparseCheckoutPaths
