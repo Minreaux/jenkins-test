@@ -32,9 +32,10 @@ multibranchPipelineJob('seedJobs')
 
                     traits
                     {
-                        headRegexFilter
+                        headWildcardFilter
                         {
-                            regex("${BRANCH_NAME}.*")
+                            // Space-separated list of name patterns to consider
+                            includes("${BRANCH_NAME}*")
                         }
 
                         sparseCheckoutPaths
