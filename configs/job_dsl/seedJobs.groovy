@@ -43,7 +43,7 @@ multibranchPipelineJob('seedJobs')
                             {
                                 sparseCheckoutPaths
                                 {
-                                    spaceCheckoutPath
+                                    sparseeCheckoutPath
                                     {
                                         path(JENKINSFILE_PATH)
                                     }
