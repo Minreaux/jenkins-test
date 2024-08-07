@@ -35,7 +35,7 @@ multibranchPipelineJob('seedJobs')
                         headWildcardFilter
                         {
                             // Space-separated list of name patterns to consider
-                            includes("${BRANCH_NAME}*")
+                            includes("${BRANCH_NAME} ${BRANCH_NAME}*")
                             
                             // Space-separated list of name patterns to ignore even if matched by the includes list
                             excludes('')
