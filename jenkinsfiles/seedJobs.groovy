@@ -1,6 +1,7 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins multibranch pipeline
 // This overwrites the initial seedJobs config configured by configs/seedJobs.groovy
-String BRANCH_NAME = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
+String BRANCH_NAME      = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
+String JENKINSFILE_PATH = 'jenkinsfiles/seedJobs'
 multibranchPipelineJob('seedJobs')
 {
     description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
@@ -28,7 +29,7 @@ multibranchPipelineJob('seedJobs')
             {
                 git
                 {
-                    remote(GIT_URL)
+                    remote('https://github.com/Minreaux/jenkins-test.git')
 
                     traits
                     {
