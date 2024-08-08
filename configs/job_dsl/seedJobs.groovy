@@ -5,17 +5,17 @@ multibranchPipelineJob('seedJobs')
 {
     description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
 
-    branchSources 
+    branchSources
     {
-        branchSource 
+        branchSource
         {
-            strategy 
+            strategy
             {
-                allBranchesSame 
+                allBranchesSame
                 {
-                    props 
+                    props
                     {
-                        suppressAutomaticTriggering 
+                        suppressAutomaticTriggering
                         {
                             strategy('NONE')
                             triggeredBranchesRegex('^$')
@@ -24,7 +24,7 @@ multibranchPipelineJob('seedJobs')
                 }
             }
 
-            source 
+            source
             {
                 git
                 {
@@ -32,13 +32,12 @@ multibranchPipelineJob('seedJobs')
 
                     traits
                     {
-                        headWildcardFilter
+                        gitBranchDiscovery()
+
+                        headRegexFilter
                         {
-                            // Space-separated list of name patterns to consider
-                            includes("${BRANCH_NAME} ${BRANCH_NAME}*")
-                            
-                            // Space-separated list of name patterns to ignore even if matched by the includes list
-                            excludes('')
+                            // A Java regular expression to restrict the names
+                            regex("${BRANCH_NAME}.*")
                         }
 
                         sparseCheckoutPaths
