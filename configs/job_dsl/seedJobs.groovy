@@ -67,10 +67,4 @@ multibranchPipelineJob('seedJobs')
             scriptPath(JENKINSFILE_PATH)
         }
     }
-
-    // Disables the seedJobs pipeline initially because it does not work on first time boot; requires automation user setup first
-    configure
-    {
-        it / disabled << 'true'
-    }
 }
