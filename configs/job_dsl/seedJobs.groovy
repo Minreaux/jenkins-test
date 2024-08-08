@@ -32,6 +32,7 @@ multibranchPipelineJob('seedJobs')
 
                     traits
                     {
+                        // Required to filter branches
                         gitBranchDiscovery()
 
                         headRegexFilter
