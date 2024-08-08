@@ -4,7 +4,7 @@
 multibranchPipelineJob('seedJobs')
 {
     description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
-
+    
     branchSources
     {
         branchSource
@@ -26,31 +26,48 @@ multibranchPipelineJob('seedJobs')
 
             source
             {
-                git
+                fromScm
                 {
-                    remote(GIT_URL)
+                    name(BRANCH_NAME)
 
-                    traits
+                    scm
                     {
-                        // Required to filter branches
-                        gitBranchDiscovery()
-
-                        headRegexFilter
+                        gitSCM
                         {
-                            // A Java regular expression to restrict the names
-                            regex("${BRANCH_NAME}.*")
-                        }
+                            branches
+                            {
+                                branchSpec
+                                {
+                                    name(BRANCH_NAME)
+                                }
+                            }
 
-                        sparseCheckoutPaths
-                        {
-                            extension
+                            browser {}
+
+                            extensions
                             {
                                 sparseCheckoutPaths
                                 {
-                                    sparseCheckoutPath
+                                    sparseCheckoutPaths
                                     {
-                                        path(JENKINSFILE_PATH)
+                                        sparseCheckoutPath
+                                        {
+                                            path(JENKINSFILE_PATH)
+                                        }
                                     }
+                                }
+                            }
+
+                            gitTool('')
+
+                            userRemoteConfigs
+                            {
+                                userRemoteConfig
+                                {
+                                    credentialsId('')
+                                    name('')
+                                    refspec('')
+                                    url(GIT_URL)
                                 }
                             }
                         }
