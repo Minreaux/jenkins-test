@@ -14,7 +14,7 @@ pipeline
     parameters
     {
         choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
-        booleanParam(name: 'DO_SEED_ALL_JOBS', defaultValue: true, description: 'If enabled, this will seed all Job DSL scripts. If not enabled, you will be asked which Job DSL script you want to seed.')
+        booleanParam(name: 'DO_SEED_ALL_JOBS', defaultValue: true, description: 'If enabled, this will seed all Job DSL scripts. If not enabled, you will be asked which Job DSL script you want to seed and all unreferenced jobs will be ignored.')
     }
 
     stages
@@ -40,10 +40,13 @@ pipeline
                 script
                 {
                     String dslScriptsToSeed = DSL_SCRIPTS
+                    String removedJobAction = params.REMOVED_JOB_ACTION
+
                     if (!params.DO_SEED_ALL_JOBS)
                     {
                         List foundDslScripts = findFiles(glob: DSL_SCRIPTS)
                         dslScriptsToSeed = input(message: 'Pick a Job DSL script to seed', parameters: [choice(choices: foundDslScripts, name: 'DSL_SCRIPT')])
+                        removedJobAction = 'IGNORE' // When only seeding individual jobs, ignore all unreferenced jobs so that existing jobs are not disabled or deleted
                     }
 
                     jobDsl(
@@ -53,7 +56,7 @@ pipeline
                         ignoreMissingFiles: false,
                         lookupStrategy: 'JENKINS_ROOT',
                         removedConfigFilesAction: 'IGNORE',
-                        removedJobAction: params.REMOVED_JOB_ACTION,
+                        removedJobAction: removedJobAction,
                         removedViewAction: 'IGNORE',
                         sandbox: true,
                         targets: dslScriptsToSeed,
