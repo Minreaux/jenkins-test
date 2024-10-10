@@ -1,6 +1,5 @@
 // Job DSL Groovy script that defines the job configuration for the seedJobs Jenkins multibranch pipeline
 // This overwrites the initial seedJobs config configured by configs/seedJobs.groovy
-String BRANCH_NAME      = "${BRANCH_NAME}" // Prevents getProperty script approval requirement
 String JENKINSFILE_PATH = 'jenkinsfiles/seedJobs'
 
 multibranchPipelineJob('seedJobs')
@@ -40,8 +39,8 @@ multibranchPipelineJob('seedJobs')
                         headRegexFilter
                         {
                             // A Java regular expression to restrict the names
-                            // Always match BRANCH_NAME; will also match any dev prefixed branches
-                            regex("${BRANCH_NAME}|dev.*")
+                            // Always match main; will also match any dev prefixed branches
+                            regex("main|dev.*")
                         }
 
                         sparseCheckoutPaths
