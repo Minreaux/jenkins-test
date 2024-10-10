@@ -46,7 +46,7 @@ pipeline
 
                     withCredentials(credentials)
                     {
-                        pwsh("py ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
+                        pwsh("python3 ${SCRIPT_PATH} ${WORKSPACE}/${FILE_NAME} \$env:MYSECRET")
                     }
                 }
 
