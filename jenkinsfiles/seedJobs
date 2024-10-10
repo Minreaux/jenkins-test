@@ -48,7 +48,7 @@ pipeline
 
                     jobDsl(
                         failOnMissingPlugin: true,
-                        failOnSeedCollision: true,
+                        failOnSeedCollision: false, // If turned on, this prevents seedJobs from overwriting existing seedJobs-seeded jobs; this should be turned on in a production environment
                         ignoreExisting: false,
                         ignoreMissingFiles: false,
                         lookupStrategy: 'JENKINS_ROOT',
