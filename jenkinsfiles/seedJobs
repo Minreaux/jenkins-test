@@ -14,6 +14,7 @@ pipeline
     parameters
     {
         choice(name: 'REMOVED_JOB_ACTION', choices: ['DISABLE', 'DELETE'], description: 'Specifies what to do when a previously generated job is not referenced anymore.')
+        booleanParam(name: 'DO_SEED_ALL_JOBS', defaultValue: true, description: 'If enabled, this will seed all Job DSL scripts. If not enabled, you will be asked which Job DSL script you want to seed and all unreferenced jobs will be ignored.')
     }
 
     stages
@@ -36,19 +37,32 @@ pipeline
                     )
                 )
 
-                jobDsl(
-                    failOnMissingPlugin: true,
-                    failOnSeedCollision: true,
-                    ignoreExisting: false,
-                    ignoreMissingFiles: false,
-                    lookupStrategy: 'JENKINS_ROOT',
-                    removedConfigFilesAction: 'IGNORE',
-                    removedJobAction: params.REMOVED_JOB_ACTION,
-                    removedViewAction: 'IGNORE',
-                    sandbox: true,
-                    targets: DSL_SCRIPTS,
-                    unstableOnDeprecation: true
-                )
+                script
+                {
+                    String dslScriptsToSeed = DSL_SCRIPTS
+                    String removedJobAction = params.REMOVED_JOB_ACTION
+
+                    if (!params.DO_SEED_ALL_JOBS)
+                    {
+                        List foundDslScripts = findFiles(glob: DSL_SCRIPTS)
+                        dslScriptsToSeed = input(message: 'Pick a Job DSL script to seed', parameters: [choice(choices: foundDslScripts, name: 'DSL_SCRIPT')])
+                        removedJobAction = 'IGNORE' // When only seeding individual jobs, ignore all unreferenced jobs so that existing jobs are not disabled or deleted
+                    }
+
+                    jobDsl(
+                        failOnMissingPlugin: true,
+                        failOnSeedCollision: false, // If turned on, this prevents seedJobs from overwriting existing seedJobs-seeded jobs; this should be turned on in a production environment
+                        ignoreExisting: false,
+                        ignoreMissingFiles: false,
+                        lookupStrategy: 'JENKINS_ROOT',
+                        removedConfigFilesAction: 'IGNORE',
+                        removedJobAction: removedJobAction,
+                        removedViewAction: 'IGNORE',
+                        sandbox: true,
+                        targets: dslScriptsToSeed,
+                        unstableOnDeprecation: true
+                    )
+                }
             }
         }
     }
