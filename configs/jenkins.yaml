@@ -204,7 +204,7 @@ security:
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
   cps:
-    hideSandbox: false
+    hideSandbox: true
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -219,7 +219,7 @@ security:
           specificUsersAuthorizationStrategy:
             userid: "auto"
   scriptApproval:
-    forceSandbox: false
+    forceSandbox: true
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:

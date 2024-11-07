@@ -41,10 +41,6 @@ security:
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
 
-  # TODO
-  cps:
-    hideSandbox: false
-
   # Git Hooks
   gitHooks:
     allowedOnAgents: false
@@ -67,5 +63,8 @@ security:
             userid: "auto"
 
   # Sandbox Configuration
+  # NOTE: When "Force the use of sandbox globally in the system" is enabled, it enables both of these options
+  cps:
+    hideSandbox: true
   scriptApproval:
     forceSandbox: false
