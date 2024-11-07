@@ -62,6 +62,7 @@ jenkins:
           pattern: ".*"
           permissions:
           - "Job/ExtendedRead"
+          - "Job/Build"
           - "Job/Delete"
           - "Job/Create"
           - "Job/Discover"
@@ -169,26 +170,26 @@ globalCredentialsConfiguration:
     providerFilter:
       includes:
         classNames:
-        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
     typeFilter:
       includes:
         classNames:
-        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
-        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
         - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
+        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
 appearance:
   pipelineGraphView:
     showGraphOnBuildPage: true
@@ -202,6 +203,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  cps:
+    hideSandbox: true
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -215,6 +218,8 @@ security:
         strategy:
           specificUsersAuthorizationStrategy:
             userid: "auto"
+  scriptApproval:
+    forceSandbox: true
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
@@ -263,10 +268,14 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+  timestamper:
+    allPipelines: true
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
 tool:
   git:
     installations:
-    - home: "git.exe"
+    - home: "git"
       name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
