@@ -41,6 +41,10 @@ security:
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
 
+  # TODO
+  cps:
+    hideSandbox: false
+
   # Git Hooks
   gitHooks:
     allowedOnAgents: false
@@ -61,3 +65,7 @@ security:
         strategy:
           specificUsersAuthorizationStrategy:
             userid: "auto"
+
+  # Sandbox Configuration
+  scriptApproval:
+    forceSandbox: false

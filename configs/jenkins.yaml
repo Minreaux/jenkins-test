@@ -62,6 +62,7 @@ jenkins:
           pattern: ".*"
           permissions:
           - "Job/ExtendedRead"
+          - "Job/Build"
           - "Job/Delete"
           - "Job/Create"
           - "Job/Discover"
@@ -202,6 +203,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  cps:
+    hideSandbox: false
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -215,6 +218,8 @@ security:
         strategy:
           specificUsersAuthorizationStrategy:
             userid: "auto"
+  scriptApproval:
+    forceSandbox: false
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
@@ -266,7 +271,7 @@ unclassified:
 tool:
   git:
     installations:
-    - home: "git.exe"
+    - home: "git"
       name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
