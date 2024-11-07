@@ -67,4 +67,4 @@ security:
   cps:
     hideSandbox: true
   scriptApproval:
-    forceSandbox: false
+    forceSandbox: true
