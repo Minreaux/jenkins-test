@@ -40,3 +40,6 @@ plugins:
   - artifactId: role-strategy
     source:
       version: latest
+  - artifactId: timestamper
+    source:
+      version: latest
