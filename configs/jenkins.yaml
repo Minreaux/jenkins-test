@@ -170,26 +170,26 @@ globalCredentialsConfiguration:
     providerFilter:
       includes:
         classNames:
-        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
     typeFilter:
       includes:
         classNames:
-        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
-        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
         - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
         - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
+        - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
 appearance:
   pipelineGraphView:
     showGraphOnBuildPage: true
