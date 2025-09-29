@@ -29,7 +29,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 
 > **_NOTE:_** Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonmyous" which does not have any permissions. The "auto" user is created after first time login.
 
-> **_NOTE:_** All Jenkins credentials types that are not used by the 1Password Secrets or HashiCorp Vault plugins have been disabled for this Jenkins environment.
+> **_NOTE:_** All Jenkins credentials types that are not used in this Jenkins environment have been disabled through the configs\casc\providers.yaml.
 
 ## With 1Password Secrets
 If you want to run this Jenkins instance with the configured 1Password service account and 1Password credentials, you must [install the 1Password CLI](https://developer.1password.com/docs/cli/get-started/) on your local machine and set the following environment variables before running the `Install-Jenkins.ps1` script:
