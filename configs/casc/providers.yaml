@@ -1,4 +1,4 @@
-# Manage Jenkins >> Credentials Providers (Standard Jenkins Credentials)
+# Manage Jenkins >> Credentials Providers
 globalCredentialsConfiguration:
   configuration:
 
