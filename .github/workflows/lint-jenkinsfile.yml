@@ -27,7 +27,8 @@ jobs:
         # Create a comprehensive file list and lint all at once
         files=$(find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \); find shared_libraries -name "*.groovy"; find configs/job_dsl -name "*.groovy")
         if [ -n "$files" ]; then
-          echo "$files" | tr '\n' ' ' | xargs npm-groovy-lint --files --failon error
+          file_list=$(echo "$files" | tr '\n' ',')
+          npm-groovy-lint --files "$file_list" --failon error
         else
           echo "No files found to lint"
         fi
