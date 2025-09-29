@@ -3,40 +3,30 @@ name: Jenkinsfile Lint
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - 'jenkinsfiles/**'
-      - 'shared_libraries/**'
-      - '.github/workflows/lint-jenkins.yml'
 
 jobs:
   jenkinsfile-lint:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v5.0.0
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v5.0.0
       with:
         node-version: '20'
-        
+
     - name: Install npm-groovy-lint
       run: npm install -g npm-groovy-lint
-        
+
     - name: Lint Jenkinsfiles
       run: |
         echo "Linting Jenkinsfiles..."
-        find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \) -exec npm-groovy-lint --files {} \;
-        
-    - name: Lint Shared Libraries
-      run: |
-        echo "Linting shared libraries..."
-        find shared_libraries -name "*.groovy" -exec npm-groovy-lint --files {} \;
-        
-    - name: Summary
-      run: |
-        echo "✅ Jenkins files linting completed successfully!"
-        echo "Files checked:"
-        echo "- Jenkinsfiles: $(find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \) | wc -l)"
-        echo "- Shared Libraries: $(find shared_libraries -name "*.groovy" | wc -l)"
+
+        # Create a comprehensive file list and lint all at once
+        {
+          find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \)
+          find shared_libraries -name "*.groovy"
+          find configs/job_dsl -name "*.groovy"
+        } | xargs -I {} npm-groovy-lint --files {}
