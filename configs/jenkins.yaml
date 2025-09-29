@@ -1,3 +1,26 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - string:
+          description: "Example secret text credential"
+          id: "example-secret-text"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAg8XMQbakObxlEr03H1T+pBCtRHG6BkuRVrr1ozqmNTSFf62WSc5dIEuXK7iesoWdZ}"
+      - usernamePassword:
+          description: "Example username/password credential"
+          id: "example-username-password"
+          password: "{AQAAABAAAAAgw26/Ao655qo3+mi0atzqjS/mSdyTO9VhEEr/C2AvO2vrqppbZ895ADlRrubTnR2A}"
+          scope: GLOBAL
+          username: "change-me-username"
+      - basicSSHUserPrivateKey:
+          description: "Example SSH private key credential"
+          id: "example-ssh-key"
+          privateKeySource:
+            directEntry:
+              privateKey: "{AQAAABAAAACwifIY3XEvXvhz8pihuxrmC3QQKw2b6KFlpGPQsgvXtgjjQp/F3EycKlw21Rf9LRdnVBMvTByMa1AGxbKVt71Yvi3XvaOAuUK8zALVqlZkKp+n6skkRfE/3QecJkwUqKfly64hEheraiN+HU239WfvAakBoc6jYRsCRVy3nwcMup81FSK/f2ZPLqUa5DVbQAQoJmAuzam+nmtAXo3v0rN/p04/VSR2e0OJtIkb6UUVr5u+tCMOddcWtnsTQ4VVV78C}"
+          scope: GLOBAL
+          username: "ssh-user"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
