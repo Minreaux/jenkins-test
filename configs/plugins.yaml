@@ -22,9 +22,6 @@ plugins:
   - artifactId: mock-security-realm
     source:
       version: latest
-  - artifactId: onepassword-secrets
-    source:
-      version: latest
   - artifactId: workflow-aggregator # AKA Pipeline plugin
     source:
       version: latest
@@ -34,6 +31,12 @@ plugins:
   - artifactId: pipeline-stage-view
     source:
       version: latest
+  - artifactId: pipeline-utility-steps
+    source:
+      version: latest
   - artifactId: role-strategy
+    source:
+      version: latest
+  - artifactId: timestamper
     source:
       version: latest

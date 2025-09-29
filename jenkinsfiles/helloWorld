@@ -34,7 +34,7 @@ pipeline
                     )
                 )
 
-                pwsh("py ${SCRIPT_PATH} \"World\"")
+                pwsh("python3 ${SCRIPT_PATH} \"World\"")
             }
         }
     }

@@ -44,6 +44,7 @@ jenkins:
           pattern: ".*"
           permissions:
           - "Agent/Build"
+          - "Job/Build"
           - "Job/Configure"
           - "Job/Create"
           - "Job/Delete"
