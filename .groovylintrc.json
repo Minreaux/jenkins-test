@@ -1,0 +1,20 @@
+{
+  "extends": "recommended",
+  "rules": {
+    "CompileStatic": "off",
+    "NoDef": "off",
+    "VariableTypeRequired": "off",
+    "LineLength": {
+      "length": 120
+    },
+    "UnnecessaryGString": "off",
+    "DuplicateStringLiteral": "off",
+    "BuilderMethodWithSideEffects": "off"
+  },
+  "excludes": [
+    "**/target/**",
+    "**/build/**",
+    "**/.git/**"
+  ],
+  "verbose": true
+}
