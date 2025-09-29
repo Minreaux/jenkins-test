@@ -1,6 +1,13 @@
 # Jenkins Test
 This is used for testing Jenkins Configuration as Code (JCasC), Jenkins Pipeline as Code, Jenkins Plugin Installation Manager Tool, and Jenkins Job DSL functionality.
 
+This repo covers different Jenkins secrets management configurations across separate branches:
+* `main`: Jenkins without any secrets management software
+
+* `secrets/hashicorp-vault`: Jenkins with Hashicorp Vault
+
+* `secrets/1password`: Jenkins with 1Password Secrets
+
 ## Getting Started
 Download and install a Java version to your local machine. I recommend installing Eclipse Temurin: https://adoptium.net/installation/. Jenkins currently requires Java 17 or Java 21.
 After Java is installed to your local machine, download the repository and run the `Install-Jenkins.ps1` script. This will automatically setup a Jenkins instance locally using configuration as code.
