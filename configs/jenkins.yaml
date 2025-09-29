@@ -2,25 +2,23 @@ credentials:
   system:
     domainCredentials:
     - credentials:
+      - vaultAppRoleCredential:
+          id: "vault-role-jenkins"
+          path: "approle"
+          scope: GLOBAL
+          secretId: "${CASC_VAULT_APPROLE_SECRET}"
+          usePolicies: false
+      - vaultStringCredentialImpl:
+          engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+          id: "vault-secret-text"
+          path: "kv/jenkins/secret-text"
+          scope: GLOBAL
+          vaultKey: "secret"
       - string:
-          description: "Example secret text credential"
-          id: "example-secret-text"
+          description: "Secret passed in from Vault as a secret source for JCasC"
+          id: "vault-source-secret-text"
           scope: GLOBAL
-          secret: "{AQAAABAAAAAg8XMQbakObxlEr03H1T+pBCtRHG6BkuRVrr1ozqmNTSFf62WSc5dIEuXK7iesoWdZ}"
-      - usernamePassword:
-          description: "Example username/password credential"
-          id: "example-username-password"
-          password: "{AQAAABAAAAAgw26/Ao655qo3+mi0atzqjS/mSdyTO9VhEEr/C2AvO2vrqppbZ895ADlRrubTnR2A}"
-          scope: GLOBAL
-          username: "change-me-username"
-      - basicSSHUserPrivateKey:
-          description: "Example SSH private key credential"
-          id: "example-ssh-key"
-          privateKeySource:
-            directEntry:
-              privateKey: "{AQAAABAAAACwifIY3XEvXvhz8pihuxrmC3QQKw2b6KFlpGPQsgvXtgjjQp/F3EycKlw21Rf9LRdnVBMvTByMa1AGxbKVt71Yvi3XvaOAuUK8zALVqlZkKp+n6skkRfE/3QecJkwUqKfly64hEheraiN+HU239WfvAakBoc6jYRsCRVy3nwcMup81FSK/f2ZPLqUa5DVbQAQoJmAuzam+nmtAXo3v0rN/p04/VSR2e0OJtIkb6UUVr5u+tCMOddcWtnsTQ4VVV78C}"
-          scope: GLOBAL
-          username: "ssh-user"
+          secret: "${kv/jenkins/secret-text/secret}"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
@@ -174,13 +172,23 @@ globalCredentialsConfiguration:
         classNames:
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
     typeFilter:
       includes:
         classNames:
-        - "com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl"
-        - "com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl"
-        - "com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey"
-        - "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
+        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
+        - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
         - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
 appearance:
   pipelineGraphView:
@@ -235,6 +243,14 @@ unclassified:
                   extension:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
+  hashicorpVault:
+    configuration:
+      disableChildPoliciesOverride: false
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+      skipSslVerification: true
+      timeout: 60
+      vaultCredentialId: "vault-role-jenkins"
+      vaultUrl: "${CASC_VAULT_URL}"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"

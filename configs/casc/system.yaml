@@ -55,6 +55,16 @@ unclassified:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
 
+  # Vault Plugin
+  hashicorpVault:
+    configuration:
+      disableChildPoliciesOverride: false
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+      skipSslVerification: true
+      timeout: 60
+      vaultCredentialId: "vault-role-jenkins"
+      vaultUrl: "${CASC_VAULT_URL}"
+
   # Jenkins Location
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
