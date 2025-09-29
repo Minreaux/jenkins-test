@@ -37,7 +37,7 @@ jobs:
         if [ -n "$extensionless_files" ]; then
           echo "Linting extensionless Jenkinsfiles..."
           for file in $extensionless_files; do
-            npm-groovy-lint --files "$file" --source groovy --failon error
+            npm-groovy-lint --source groovy --failon error "$file"
           done
         fi
         
