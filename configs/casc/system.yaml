@@ -1,3 +1,4 @@
+
 # Manage Jenkins >> System
 # Do not add "remotingSecurity" section as per https://www.jenkins.io/doc/book/security/controller-isolation/jep-235/#api-compatibility
 # Do not add 'labelAtoms' section as these labels should be controlled through nodes 'labelString' key-value pairs in nodes.yaml
@@ -54,6 +55,16 @@ unclassified:
                   extension:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
+
+  # Vault Plugin
+  hashicorpVault:
+    configuration:
+      disableChildPoliciesOverride: false
+      engineVersion: "${CASC_VAULT_ENGINE_VERSION}"
+      skipSslVerification: true
+      timeout: 60
+      vaultCredentialId: "vault-role-jenkins"
+      vaultUrl: "${CASC_VAULT_URL}"
 
   # Jenkins Location
   location:
