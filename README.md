@@ -2,7 +2,7 @@
 This is used for testing Jenkins Configuration as Code (JCasC), Jenkins Pipeline as Code, Jenkins Plugin Installation Manager Tool, and Jenkins Job DSL functionality.
 
 This repo covers different Jenkins secrets management configurations across separate branches:
-* `main`: Jenkins base without any secrets management software
+* `main`: Jenkins without any secrets management software
 
 * `secrets/hashicorp-vault`: Jenkins with Hashicorp Vault
 
