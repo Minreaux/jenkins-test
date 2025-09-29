@@ -20,7 +20,7 @@ Mock accounts will be configured automatically and can be used to login. For the
 | jane     | User        |
 | john     | User        |
 
-> **_NOTE:_** Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonmyous" which does not have any permissions. The "auto" user is created after first time login.
+> **_NOTE:_** Jobs are configured to run as the "auto" user by default. Because of this, you must login to the "auto" user once for jobs to work as intended. This is because the "auto" user does not yet exist on first boot, and so jobs are running as "anonymous" which does not have any permissions. The "auto" user is created after first time login.
 
 > **_NOTE:_** All Jenkins credentials types that are not used in this Jenkins environment have been disabled through the `configs\casc\providers.yaml`.
 
