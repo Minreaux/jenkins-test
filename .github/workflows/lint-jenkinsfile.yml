@@ -25,10 +25,22 @@ jobs:
         echo "Linting Jenkinsfiles..."
 
         # Create a comprehensive file list and lint all at once
-        files=$(find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \); find shared_libraries -name "*.groovy"; find configs/job_dsl -name "*.groovy")
-        if [ -n "$files" ]; then
-          file_list=$(echo "$files" | tr '\n' ',')
-          npm-groovy-lint --files "$file_list" --failon error
-        else
+        groovy_files=$(find jenkinsfiles shared_libraries configs/job_dsl -name "*.groovy")
+        extensionless_files=$(find jenkinsfiles -type f ! -name "*.*")
+        
+        if [ -n "$groovy_files" ]; then
+          echo "Linting .groovy files..."
+          groovy_list=$(echo "$groovy_files" | tr '\n' ',')
+          npm-groovy-lint --files "$groovy_list" --failon error
+        fi
+        
+        if [ -n "$extensionless_files" ]; then
+          echo "Linting extensionless Jenkinsfiles..."
+          for file in $extensionless_files; do
+            npm-groovy-lint --files "$file" --source groovy --failon error
+          done
+        fi
+        
+        if [ -z "$groovy_files" ] && [ -z "$extensionless_files" ]; then
           echo "No files found to lint"
         fi
