@@ -25,8 +25,9 @@ jobs:
         echo "Linting Jenkinsfiles..."
 
         # Create a comprehensive file list and lint all at once
-        {
-          find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \)
-          find shared_libraries -name "*.groovy"
-          find configs/job_dsl -name "*.groovy"
-        } | xargs -I {} npm-groovy-lint --files {}
+        files=$(find jenkinsfiles -type f \( -name "*.groovy" -o ! -name "*.*" \); find shared_libraries -name "*.groovy"; find configs/job_dsl -name "*.groovy")
+        if [ -n "$files" ]; then
+          echo "$files" | tr '\n' ' ' | xargs npm-groovy-lint --files
+        else
+          echo "No files found to lint"
+        fi
