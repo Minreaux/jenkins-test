@@ -1,4 +1,4 @@
-# Manage Jenkins >> Credentials Providers
+# Manage Jenkins >> Credentials Providers (Standard Jenkins Credentials)
 globalCredentialsConfiguration:
   configuration:
 
@@ -8,23 +8,13 @@ globalCredentialsConfiguration:
         classNames:
         - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
         - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
-        - "com.datapipe.jenkins.vault.credentials.VaultCredentialsProvider"
 
     # Types
     typeFilter:
       includes:
         classNames:
-        - "com.datapipe.jenkins.vault.credentials.common.VaultCertificateCredentialsImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultFileCredentialImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultGCRLoginImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultSSHUserPrivateKeyImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultStringCredentialImpl"
-        - "com.datapipe.jenkins.vault.credentials.common.VaultUsernamePasswordCredentialImpl"
-        - "com.datapipe.jenkins.vault.credentials.VaultAppRoleCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultAwsIamCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultGCPCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultGithubTokenCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultKubernetesCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultTokenCredential"
-        - "com.datapipe.jenkins.vault.credentials.VaultTokenFileCredential"
+        - "com.cloudbees.plugins.credentials.impl.CertificateCredentialsImpl" # Certificate
+        - "com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl" # Username/Password
+        - "com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey" # SSH Username with private key
+        - "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl" # Secret file
         - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl" # Secret text
