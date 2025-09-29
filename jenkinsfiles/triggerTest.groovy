@@ -35,8 +35,8 @@ pipelineJob('triggerTest')
             {
                 cron
                 {
-                    // Trigger this job every 1 minute if BRANCH_NAME is main, otherwise do not trigger
-                    spec(BRANCH_NAME == 'main' ? '* * * * *' : '')
+                    // Trigger this job every 5 minutes if BRANCH_NAME is main, otherwise do not trigger
+                    spec(BRANCH_NAME == 'main' ? '*/5 * * * *' : '')
                 }
             }
         }
