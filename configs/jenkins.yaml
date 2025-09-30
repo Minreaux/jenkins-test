@@ -200,7 +200,7 @@ appearance:
     theme: PRISM
   themeManager:
     disableUserThemes: false
-    theme: "noOp"
+    theme: "darkSystem"
 security:
   apiToken:
     creationOfLegacyTokenEnabled: false

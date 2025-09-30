@@ -13,3 +13,4 @@ appearance:
   # Themes
   themeManager:
     disableUserThemes: false
+    theme: "darkSystem"
