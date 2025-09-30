@@ -103,7 +103,6 @@ jenkins:
       name: "Configuration as Code Logs"
   markupFormatter: "plainText"
   mode: NORMAL
-  myViewsTabBar: "standard"
   noUsageStatistics: true
   nodeMonitors:
   - "architecture"
