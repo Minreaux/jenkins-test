@@ -22,9 +22,6 @@ credentials:
           scope: GLOBAL
           username: "ssh-user"
 jenkins:
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
   authorizationStrategy:
     roleBased:
       roles:
