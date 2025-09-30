@@ -1,4 +1,10 @@
+configuration-as-code: {
+  }
 credentials:
+  folder: {
+    }
+  providerImpl: {
+    }
   system:
     domainCredentials:
     - credentials:
@@ -6,11 +12,11 @@ credentials:
           description: "Example secret text credential"
           id: "example-secret-text"
           scope: GLOBAL
-          secret: "{AQAAABAAAAAg8XMQbakObxlEr03H1T+pBCtRHG6BkuRVrr1ozqmNTSFf62WSc5dIEuXK7iesoWdZ}"
+          secret: "<encrypted-key-that-is-different-every-time>"
       - usernamePassword:
           description: "Example username/password credential"
           id: "example-username-password"
-          password: "{AQAAABAAAAAgw26/Ao655qo3+mi0atzqjS/mSdyTO9VhEEr/C2AvO2vrqppbZ895ADlRrubTnR2A}"
+          password: "<encrypted-key-that-is-different-every-time>"
           scope: GLOBAL
           username: "change-me-username"
       - basicSSHUserPrivateKey:
@@ -18,9 +24,13 @@ credentials:
           id: "example-ssh-key"
           privateKeySource:
             directEntry:
-              privateKey: "{AQAAABAAAACwifIY3XEvXvhz8pihuxrmC3QQKw2b6KFlpGPQsgvXtgjjQp/F3EycKlw21Rf9LRdnVBMvTByMa1AGxbKVt71Yvi3XvaOAuUK8zALVqlZkKp+n6skkRfE/3QecJkwUqKfly64hEheraiN+HU239WfvAakBoc6jYRsCRVy3nwcMup81FSK/f2ZPLqUa5DVbQAQoJmAuzam+nmtAXo3v0rN/p04/VSR2e0OJtIkb6UUVr5u+tCMOddcWtnsTQ4VVV78C}"
+              privateKey: "<encrypted-key-that-is-different-every-time>"
           scope: GLOBAL
           username: "ssh-user"
+      domain: {
+        }
+  user: {
+    }
 jenkins:
   authorizationStrategy:
     roleBased:
@@ -179,20 +189,29 @@ globalCredentialsConfiguration:
         - "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl"
         - "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl"
 appearance:
+  consoleUrlProvider: {
+    }
   pipelineGraphView:
     showGraphOnBuildPage: true
     showGraphOnJobPage: false
+    showStageDurations: false
+    showStageNames: false
   prism:
     theme: PRISM
   themeManager:
     disableUserThemes: false
+    theme: "noOp"
 security:
   apiToken:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  apiTokenProperty: {
+    }
   cps:
     hideSandbox: true
+  crumb: {
+    }
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -200,6 +219,8 @@ security:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
   globalJobDslSecurityConfiguration:
     useScriptSecurity: true
+  prism: {
+    }
   queueItemAuthenticator:
     authenticators:
     - global:
@@ -208,13 +229,35 @@ security:
             userid: "auto"
   scriptApproval:
     forceSandbox: true
+  updateSiteWarningsConfiguration: {
+    }
 unclassified:
+  administrativeMonitorsConfiguration: {
+    }
+  artifactManager: {
+    }
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
+  builtInNode: {
+    }
+  casCGlobalConfig: {
+    }
+  computerRetentionCheckInterval: {
+    }
+  defaultDisplayUrlProvider: {
+    }
+  defaultFolderConfiguration: {
+    }
+  defaultView: {
+    }
+  envVarsFilter: {
+    }
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  globalDefaultFlowDurabilityLevel: {
+    }
   globalLibraries:
     libraries:
     - defaultVersion: "main"
@@ -231,6 +274,8 @@ unclassified:
                   extension:
                     sparseCheckoutPaths:
                     - path: "shared_libraries/utils/"
+  globalUntrustedLibraries: {
+    }
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "http://localhost:8080/"
@@ -238,8 +283,24 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  metricsAccessKey: {
+    }
+  myView: {
+    }
+  nodeProperties: {
+    }
+  plugin: {
+    }
   pollSCM:
     pollingThreadCount: 10
+  projectNamingStrategy: {
+    }
+  proxyConfigurationManager: {
+    }
+  quietPeriod: {
+    }
+  resourceRoot: {
+    }
   scmGit:
     addGitTagAction: false
     allowSecondFetch: false
@@ -248,10 +309,18 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+  scmRetryCount: {
+    }
+  shell: {
+    }
   timestamper:
     allPipelines: true
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
     systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  usageStatistics: {
+    }
+  viewsTabBar: {
+    }
 tool:
   git:
     installations:
