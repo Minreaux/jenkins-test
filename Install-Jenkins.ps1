@@ -1,13 +1,13 @@
 # Powershell Core script to install Jenkins locally
 $currentWorkingDir = Get-Location
-$jenkinsVersion    = "2.479.1"
+$jenkinsVersion    = "2.516.3"
 $jenkinsConfigs    = "$currentWorkingDir/configs"
 $jcascConfigs      = "$jenkinsConfigs/casc"
 $jenkinsHome       = "$currentWorkingDir/jenkins"
 $jenkinsWar        = "$jenkinsHome/jenkins.war"
-$jenkinsWarUrl     = "https://github.com/jenkinsci/jenkins/releases/download/jenkins-$jenkinsVersion/jenkins.war" # Long-Term Support (LTS) release
+$jenkinsWarUrl     = "https://get.jenkins.io/war-stable/$jenkinsVersion/jenkins.war" # Long-Term Support (LTS) release
 
-$pluginManagerVersion = "2.13.0"
+$pluginManagerVersion = "2.13.2"
 $pluginManagerJar     = "$jenkinsHome/jenkins-plugin-manager-$pluginManagerVersion.jar"
 $pluginManagerUrl     = "https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/$pluginManagerVersion/jenkins-plugin-manager-$pluginManagerVersion.jar"
 $pluginsConfig        = "$jenkinsConfigs/plugins.yaml"
