@@ -41,5 +41,4 @@ pipelineJob('triggerTest')
             }
         }
     }
-
 }

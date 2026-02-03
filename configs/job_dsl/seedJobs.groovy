@@ -4,7 +4,7 @@
 multibranchPipelineJob('seedJobs')
 {
     description('This job is used to seed Jenkins jobs through code using Job DSL scripts')
-    
+
     branchSources
     {
         branchSource
